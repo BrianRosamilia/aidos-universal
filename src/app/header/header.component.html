@@ -1,0 +1,14 @@
+<header>
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="toggleNavbar()" aria-controls="aidos-navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" routerLink="/">{{ 'title' | translate }}</a>
+    <div [ngbCollapse]="navbarCollapsed | async" class="collapse navbar-collapse" id="aidos-navbar">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/home" routerLinkActive="active"><i class="fa fa-home fa-fw" aria-hidden="true"></i> {{ 'links.home' | translate }}</a>
+        <a class="nav-item nav-link" routerLink="/about" routerLinkActive="active"><i class="fa fa-info fa-fw" aria-hidden="true"></i> {{ 'links.about' | translate }}</a>
+      </div>
+    </div>
+  </nav>
+</header>

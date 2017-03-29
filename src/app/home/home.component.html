@@ -1,0 +1,33 @@
+<div class="container">
+  <ul class="list-inline">
+    <li><a href="https://localhost:8765/login" id="login">CAS Login</a></li>
+    <li><a href="https://localhost:8765/uaa/logout" id="logout">CAS Logout</a></li>
+    <li><a href="https://localhost:8443/uaa/basic/login" id="login">Basic Login</a></li>
+    <li><a href="https://localhost:8443/uaa/basic/logout" id="logout">Basic Logout</a></li>
+  </ul>
+
+  <hr/>
+
+  <button type="button" class="btn btn-primary" (click)="userDetails()">User details</button>
+
+  <button type="button" class="btn btn-primary" (click)="greet()">Greet</button>
+
+  <button type="button" class="btn btn-primary" (click)="test()">Test</button>
+
+  <hr/>
+
+  <div *ngIf="user | async as user" class="col-md-10 col-offset-1">
+    <span><strong>User details:</strong></span>
+    <div [innerHTML]="user | aidosPrettyPrint"></div>
+  </div>
+
+  <div *ngIf="greetings | async as greetings" class="col-md-10 col-offset-1">
+    <span><strong>Greetings:</strong></span>
+    <div [innerHTML]="greetings | aidosPrettyPrint"></div>
+  </div>
+
+  <div *ngIf="data | async as test" class="col-md-10 col-offset-1">
+    <span><strong>Test:</strong></span>
+    <div [innerHTML]="test | aidosPrettyPrint"></div>
+  </div>
+</div>

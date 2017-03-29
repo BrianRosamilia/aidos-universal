@@ -1,0 +1,11 @@
+<div class="outer-wrapper">
+  <aidos-header></aidos-header>
+  <main>
+    <h2 class="temp-config" [ngClass]="{ 'production': config.production, 'development': !config.production }">
+      <span *ngIf="config.production">Production</span>
+      <span *ngIf="!config.production">Development</span>
+    </h2>
+    <router-outlet></router-outlet>
+  </main>
+  <aidos-footer></aidos-footer>
+</div>

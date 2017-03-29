@@ -1,0 +1,49 @@
+@import "../styles/variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/font-awesome/scss/font-awesome.scss";
+html {
+  overflow-y: scroll;
+}
+
+body {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+aidos-app {
+  width: 100%;
+}
+
+div.outer-wrapper {
+  flex: 1 1 auto;
+  flex-flow: column nowrap;
+  display: flex;
+  height: 100vh;
+  min-height: 100%;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+aidos-footer {
+  flex: none;
+  text-align: center;
+  background-color: $gray-lighter;
+}
+
+h2.temp-config {
+  text-align: center;
+}
+
+h2.production {
+  color: red;
+}
+
+h2.development {
+  color: green;
+}
