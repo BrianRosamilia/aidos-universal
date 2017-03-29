@@ -6,4 +6,4 @@ export interface AppState {
   router: RouterState;
   window: WindowState;
   header: HeaderState;
-};
+}

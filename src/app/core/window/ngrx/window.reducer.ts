@@ -5,7 +5,7 @@ import { Record } from 'immutable';
 export interface WindowState {
   width: number;
   height: number;
-};
+}
 
 const WindowRecord = Record({
   width: undefined,

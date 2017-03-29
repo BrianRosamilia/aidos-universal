@@ -1,6 +1,7 @@
 @import "../styles/variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "../../node_modules/font-awesome/scss/font-awesome.scss";
+
 html {
   overflow-y: scroll;
 }
@@ -32,6 +33,7 @@ main {
 
 aidos-footer {
   flex: none;
+  margin-top: 25px;
   text-align: center;
   background-color: $gray-lighter;
 }

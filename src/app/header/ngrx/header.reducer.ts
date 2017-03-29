@@ -4,7 +4,7 @@ import { Record } from 'immutable';
 
 export interface HeaderState {
   navbarCollapsed: boolean;
-};
+}
 
 const HeaderRecord = Record({
   navbarCollapsed: true

@@ -19,4 +19,4 @@ export class HeaderAction implements Action {
   constructor(type: HeaderActionType) {
     this.type = HeaderActionTypes[type];
   }
-};
+}
