@@ -53,7 +53,6 @@ export function ngExpressEngine(setupOptions: NgSetupOptions) {
   setupOptions.providers = setupOptions.providers || [];
 
   return (filePath: string, options: RenderOptions, callback: Send) => {
-
     options.providers = options.providers || [];
 
     try {
@@ -65,15 +64,14 @@ export function ngExpressEngine(setupOptions: NgSetupOptions) {
 
       const extraProviders = setupOptions.providers.concat(
         options.providers,
-        getReqResProviders(options.req, options.res),
-        [
-          {
-            provide: INITIAL_CONFIG,
-            useValue: {
-              document: getDocument(filePath),
-              url: options.req.originalUrl
-            }
+        getReqResProviders(options.req, options.res), [{
+          provide: INITIAL_CONFIG,
+          useValue: {
+            document: getDocument(filePath),
+            url: options.req.originalUrl,
+            cookie: options.req.headers.cookie
           }
+        }
         ]);
 
       getFactory(moduleOrFactory, compiler)

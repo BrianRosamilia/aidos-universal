@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ 'login.modal.header' | translate }}</h5>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container col-md-12">
+    <div class="row">
+      <div class="col-md-6">
+        <span class="mx-auto">
+          <a class="btn btn-primary" href="{{ config.zuul.baseUrl }}/login">{{ 'login.modal.shibboleth' | translate }}</a>
+        </span>
+      </div>
+      <div class="col-md-6">
+        <span class="mx-auto">
+          <a class="btn btn-primary" href="{{ config.auth.baseUrl }}/basic/login">{{ 'login.modal.basic' | translate }}</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary clickable" (click)="activeModal.close('Close click')">{{ 'login.modal.close' | translate }}</button>
+</div>

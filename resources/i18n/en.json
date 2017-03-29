@@ -2,6 +2,15 @@
   "title": "Aidos Universal",
   "links": {
     "home": "Home",
-    "about": "About"
+    "about": "About",
+    "login": "Login"
+  },
+  "login": {
+    "modal": {
+      "header": "Select method of authentication:",
+      "basic": "Basic",
+      "shibboleth": "Shibboleth",
+      "close": "Cancel"
+    }
   }
 }

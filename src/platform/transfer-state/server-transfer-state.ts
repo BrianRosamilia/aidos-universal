@@ -1,17 +1,20 @@
-import { Injectable, Optional, RendererFactory2, ViewEncapsulation } from '@angular/core';
+import { Inject, Injectable, Optional, RendererFactory2, ViewEncapsulation } from '@angular/core';
 import { TransferState } from './transfer-state';
-import { PlatformState } from '@angular/platform-server';
+import { INITIAL_CONFIG, PlatformState } from '@angular/platform-server';
 
 @Injectable()
 export class ServerTransferState extends TransferState {
 
-  constructor(private state: PlatformState, private rendererFactory: RendererFactory2) {
+  constructor(private state: PlatformState, private rendererFactory: RendererFactory2, @Inject(INITIAL_CONFIG) private config: any) {
     super();
   }
 
   inject() {
     try {
+      this['_map'].set('cookie', this.config.cookie);
+
       const document: any = this.state.getDocument();
+
       const transferStateString = JSON.stringify(this.toJson());
       const renderer = this.rendererFactory.createRenderer(document, {
         id: '-1',
