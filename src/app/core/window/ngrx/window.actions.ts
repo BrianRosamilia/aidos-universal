@@ -1,4 +1,6 @@
 import { Action } from '@ngrx/store';
+
+import { WindowState } from './window.reducer';
 import { type } from '../../../store/util';
 
 export enum WindowActionType {
@@ -9,15 +11,10 @@ export const WindowActionTypes = [
   type('aidos/window/RESIZE')
 ];
 
-export interface WindowSize {
-  width: number;
-  height: number;
-}
-
 export class WindowAction implements Action {
   type: string;
-  payload: WindowSize;
-  constructor(type: WindowActionType, payload: WindowSize) {
+  payload: WindowState;
+  constructor(type: WindowActionType, payload: WindowState) {
     this.type = WindowActionTypes[type];
     this.payload = payload;
   }

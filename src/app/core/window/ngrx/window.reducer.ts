@@ -7,12 +7,12 @@ export interface WindowState {
   height: number;
 }
 
-const WindowRecord = Record({
+const initialWindow = {
   width: undefined,
   height: undefined
-});
+};
 
-class WindowStateRecord extends WindowRecord implements WindowState {
+class WindowStateRecord extends Record(initialWindow) implements WindowState {
   width: number;
   height: number;
   constructor(data) {
@@ -20,12 +20,7 @@ class WindowStateRecord extends WindowRecord implements WindowState {
   }
 }
 
-const initialState: WindowStateRecord = new WindowStateRecord({
-  width: undefined,
-  height: undefined
-});
-
-export function windowReducer(state: WindowState = initialState, action: WindowAction): WindowState {
+export function windowReducer(state: WindowState = new WindowStateRecord(initialWindow), action: WindowAction): WindowState {
   switch (action.type) {
     case WindowActionTypes[WindowActionType.RESIZE]:
       state = Object.assign({}, state, action.payload);

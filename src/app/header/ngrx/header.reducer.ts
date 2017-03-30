@@ -6,22 +6,18 @@ export interface HeaderState {
   navbarCollapsed: boolean;
 }
 
-const HeaderRecord = Record({
+const initialHeader = {
   navbarCollapsed: true
-});
+};
 
-class HeaderStateRecord extends HeaderRecord implements HeaderState {
+class HeaderStateRecord extends Record(initialHeader) implements HeaderState {
   navbarCollapsed: boolean;
   constructor(data) {
     super(data);
   }
 }
 
-const initialState: HeaderStateRecord = new HeaderStateRecord({
-  navbarCollapsed: true
-});
-
-export function headerReducer(state: HeaderState = initialState, action: HeaderAction): HeaderState {
+export function headerReducer(state: HeaderState = new HeaderStateRecord(initialHeader), action: HeaderAction): HeaderState {
   switch (action.type) {
     case HeaderActionTypes[HeaderActionType.COLLAPSE]:
       state = Object.assign({}, state, { navbarCollapsed: true });
