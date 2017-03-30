@@ -13,5 +13,4 @@ install:
 
 script:
   - npm run build
-  - npm run build:aot
   - npm run build:prod

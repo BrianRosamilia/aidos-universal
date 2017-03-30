@@ -1,6 +1,6 @@
 import { routerReducer } from '@ngrx/router-store';
 import { windowReducer } from '../core/window/ngrx/window.reducer';
-import { authReducer } from '../core/auth/ngrx/auth.reducer';
+import { authReducer } from '../auth/ngrx/auth.reducer';
 import { headerReducer } from '../header/ngrx/header.reducer';
 
 export const rootReducer = {

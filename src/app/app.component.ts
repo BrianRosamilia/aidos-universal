@@ -6,9 +6,9 @@ import { TransferState } from '../platform/transfer-state/transfer-state';
 
 import { AppState } from './store/app-state.store';
 
-import { GLOBAL_CONFIG, GlobalConfig } from '../config';
-
 import { WindowAction, WindowActionType } from './core/window/ngrx/window.actions';
+
+import { GLOBAL_CONFIG, GlobalConfig } from '../config';
 
 @Component({
   selector: 'aidos-app',

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,9 +12,11 @@ import { AppState } from '../store/app-state.store';
 import { HeaderState } from './ngrx/header.reducer';
 import { HeaderAction, HeaderActionType } from './ngrx/header.actions';
 
-import { AuthService } from '../core/auth/auth.service';
+import { AuthService } from '../auth/auth.service';
 
-import { LoginModalComponent } from '../core/auth/login/login-modal.component';
+import { LoginModalComponent } from '../auth/login/login-modal.component';
+
+import { GLOBAL_CONFIG, GlobalConfig } from '../../config';
 
 @Component({
   selector: 'aidos-header',
@@ -26,7 +28,7 @@ export class HeaderComponent {
 
   public navbarCollapsed: Observable<boolean>;
 
-  constructor(private translate: TranslateService, private store: Store<AppState>, private modalService: NgbModal, private authService: AuthService) {
+  constructor(private translate: TranslateService, private store: Store<AppState>, private modalService: NgbModal, private authService: AuthService, @Inject(GLOBAL_CONFIG) public config: GlobalConfig) {
     this.navbarCollapsed = this.store.select((state: AppState) => state['header'].navbarCollapsed);
   }
 

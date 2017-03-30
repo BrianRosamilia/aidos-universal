@@ -15,6 +15,7 @@ interface GlobalConfig {
   data: string[];
   production: boolean;
   logDirectory: string;
+  shibboleth: boolean;
 };
 
 const GLOBAL_CONFIG: InjectionToken<GlobalConfig> = new InjectionToken<GlobalConfig>('config');
@@ -57,8 +58,13 @@ switch (process.env.NODE_ENV) {
 ENV_CONFIG.production = production;
 
 for (let key in ENV_CONFIG) {
-  if (ENV_CONFIG[key].ssl !== undefined && ENV_CONFIG[key].address && ENV_CONFIG[key].port && ENV_CONFIG[key].nameSpace !== undefined) {
-    ENV_CONFIG[key].baseUrl = [ENV_CONFIG[key].ssl ? 'https://' : 'http://', ENV_CONFIG[key].address, (ENV_CONFIG[key].port !== 80 || ENV_CONFIG[key].port !== 443) ? ':' + ENV_CONFIG[key].port : '', ENV_CONFIG[key].nameSpace].join('');
+  if (ENV_CONFIG[key].ssl !== undefined && ENV_CONFIG[key].address && ENV_CONFIG[key].port) {
+    ENV_CONFIG[key].baseUrl = [
+      ENV_CONFIG[key].ssl ? 'https://' : 'http://',
+      ENV_CONFIG[key].address,
+      (ENV_CONFIG[key].port !== 80 || ENV_CONFIG[key].port !== 443) ? ':' + ENV_CONFIG[key].port : '',
+      ENV_CONFIG[key].nameSpace ? ENV_CONFIG[key].nameSpace : ''
+    ].join('');
   }
 }
 

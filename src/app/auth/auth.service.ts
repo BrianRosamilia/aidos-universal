@@ -1,14 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { GLOBAL_CONFIG, GlobalConfig } from '../../../config';
+import { GLOBAL_CONFIG, GlobalConfig } from '../../config';
 
-import { TransferState } from '../../../platform/transfer-state/transfer-state';
+import { TransferState } from '../../platform/transfer-state/transfer-state';
 
 @Injectable()
 export class AuthService {
 
   constructor(private cache: TransferState, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
-    console.log(cache);
     const cookie: string = cache.get('cookie');
     let jsessionId: string;
     if (cookie) {

@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginModalComponent } from './core/auth/login/login-modal.component';
+import { LoginModalComponent } from './auth/login/login-modal.component';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';

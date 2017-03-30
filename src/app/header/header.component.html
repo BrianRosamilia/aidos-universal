@@ -15,7 +15,8 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link login-link" (click)="login()"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {{ 'links.login' | translate }}</a>
+          <a *ngIf="config.shibboleth" class="nav-link login-link" (click)="login()"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {{ 'links.login' | translate }}</a>
+          <a *ngIf="!config.shibboleth" class="nav-link login-link" href="{{ config.auth.baseUrl }}/basic/login"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {{ 'links.login' | translate }}</a>
         </li>
       </ul>
     </div>

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { GLOBAL_CONFIG, GlobalConfig } from '../../../../config';
+import { GLOBAL_CONFIG, GlobalConfig } from '../../../config';
 
 @Component({
   selector: 'aidos-login-modal',

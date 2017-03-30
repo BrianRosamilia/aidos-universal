@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { type } from '../../../store/util';
+import { type } from '../../store/util';
 
 export enum AuthActionType {
 

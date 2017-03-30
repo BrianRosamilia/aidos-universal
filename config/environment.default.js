@@ -1,22 +1,21 @@
 module.exports = {
-  "ui": {
-    "ssl": true,
-    "address": "localhost",
-    "port": 3000,
-    "nameSpace": ""
+  ui: {
+    ssl: false,
+    address: "localhost",
+    port: 3000
   },
-  "zuul": {
-    "ssl": true,
-    "address": "localhost",
-    "port": 8765,
-    "nameSpace": ""
+  zuul: {
+    ssl: false,
+    address: "localhost",
+    port: 8765
   },
-  "auth": {
-    "ssl": true,
-    "address": "localhost",
-    "port": 8443,
-    "nameSpace": "/uaa"
+  auth: {
+    ssl: false,
+    address: "localhost",
+    port: 8443,
+    nameSpace: "/uaa"
   },
-  "data": [],
-  "logDirectory": "."
+  data: [],
+  logDirectory: ".",
+  shibboleth: false
 }
