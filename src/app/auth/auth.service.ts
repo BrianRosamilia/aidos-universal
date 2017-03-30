@@ -1,21 +1,27 @@
 import { Inject, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { GLOBAL_CONFIG, GlobalConfig } from '../../config';
+import { AppState } from '../store/app-state.store';
+
+import { AuthAction, AuthActionType } from './ngrx/auth.actions';
 
 import { TransferState } from '../../platform/transfer-state/transfer-state';
+
+import { GLOBAL_CONFIG, GlobalConfig } from '../../config';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private cache: TransferState, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
+  constructor(private cache: TransferState, private store: Store<AppState>, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
     const cookie: string = cache.get('cookie');
-    let jsessionId: string;
     if (cookie) {
       const cookies: string[] = cache.get('cookie').split(';');
       for (let i in cookies) {
         if (cookies[i].trim().indexOf('JSESSIONID') === 0) {
-          jsessionId = cookies[i].trim().split('=')[1];
-          console.log(jsessionId);
+          store.dispatch(new AuthAction(AuthActionType.LOGIN, {
+            sessionId: cookies[i].trim().split('=')[1],
+            authenticated: true
+          }));
         }
       }
     }

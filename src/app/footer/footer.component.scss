@@ -1,26 +1,41 @@
 @import "../../styles/variables";
-footer {
-  margin-top: 25px;
+div.footer {
+  margin-top: 20px;
   width: 100%;
-  div.upper {
-    min-height: 40px;
-    padding-top: 8px;
-    background-color: $footer-upper-background-color;
-    border-top: 1px solid $footer-upper-border-color;
+  div.content {
+    min-height: 100px;
+    padding-top: 10px;
+    background-color: $footer-content-background-color;
+    border-top: 1px solid $footer-content-top-border-color;
     * {
-      color: $black;
+      color: $footer-content-color;
     }
   }
-  div.lower {
-    text-align: center;
-    padding-top: 10px;
-    background: $footer-lower-background-color;
+  div.information {
+    line-height: 0;
+    padding-top: 12px;
+    background: $footer-information-background-color;
+    border-top: 1px solid $footer-information-top-border-color;
     * {
-      color: $footer-lower-color;
+      color: $footer-information-color;
     }
-    div.container {
-      height: 100%;
-      padding-top: 50px;
+    div.container-fluid {
+      display: flex;
+      div.copyright-container,
+      div.social-media-container {
+        display: inline-block;
+      }
+      div.copyright-container {
+        flex: 1 1 auto;
+      }
+    }
+    .copyright {
+      font-size: 1.15rem;
+      white-space: nowrap;
+      margin-right: 5px;
+    }
+    .social-brand {
+      font-size: 1.25rem;
     }
   }
 }

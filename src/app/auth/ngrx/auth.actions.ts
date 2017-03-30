@@ -19,7 +19,6 @@ export class AuthAction implements Action {
   constructor(type: AuthActionType, payload?: AuthState) {
     this.type = AuthActionTypes[type];
     this.payload = payload ? payload : {
-      username: undefined,
       sessionId: undefined,
       authenticated: false
     };

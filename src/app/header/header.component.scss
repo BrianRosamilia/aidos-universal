@@ -1,3 +1,4 @@
-a.login-link:hover {
-  cursor: pointer;
+@import "../../styles/variables";
+nav.bg-inverse {
+  border-bottom: 1px solid $navbar-bottom-border-color;
 }
