@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { TransferHttp } from '../../platform/transfer-http/transfer-http';
+
 import { Observable } from 'rxjs/Observable';
+
+import { TransferHttp } from '../../platform/transfer-http/transfer-http';
 
 @Component({
   selector: 'aidos-home',

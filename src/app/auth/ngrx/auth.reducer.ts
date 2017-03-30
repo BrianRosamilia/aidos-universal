@@ -23,8 +23,10 @@ class AuthStateRecord extends Record(initialAuth) implements AuthState {
 export function authReducer(state: AuthState = new AuthStateRecord(initialAuth), action: AuthAction): AuthState {
   switch (action.type) {
     case AuthActionTypes[AuthActionType.LOGIN]:
-    case AuthActionTypes[AuthActionType.LOGOUT]:
       state = Object.assign({}, state, action.payload);
+      break;
+    case AuthActionTypes[AuthActionType.LOGOUT]:
+      state = Object.assign({}, state, initialAuth);
       break;
     default:
   }

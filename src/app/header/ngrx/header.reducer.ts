@@ -4,14 +4,17 @@ import { Record } from 'immutable';
 
 export interface HeaderState {
   navbarCollapsed: boolean;
+  hideLogin: boolean;
 }
 
 const initialHeader = {
-  navbarCollapsed: true
+  navbarCollapsed: true,
+  hideLogin: false
 };
 
 class HeaderStateRecord extends Record(initialHeader) implements HeaderState {
   navbarCollapsed: boolean;
+  hideLogin: boolean;
   constructor(data) {
     super(data);
   }
@@ -27,6 +30,12 @@ export function headerReducer(state: HeaderState = new HeaderStateRecord(initial
       break;
     case HeaderActionTypes[HeaderActionType.TOGGLE]:
       state = Object.assign({}, state, { navbarCollapsed: !state.navbarCollapsed });
+      break;
+    case HeaderActionTypes[HeaderActionType.HIDE_LOGIN]:
+      state = Object.assign({}, state, { hideLogin: true });
+      break;
+    case HeaderActionTypes[HeaderActionType.SHOW_LOGIN]:
+      state = Object.assign({}, state, { hideLogin: false });
       break;
     default:
   }

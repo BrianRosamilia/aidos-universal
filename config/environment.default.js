@@ -1,21 +1,21 @@
 module.exports = {
   ui: {
-    ssl: false,
+    ssl: true,
     address: "localhost",
     port: 3000
   },
   zuul: {
-    ssl: false,
+    ssl: true,
     address: "localhost",
     port: 8765
   },
   auth: {
-    ssl: false,
+    ssl: true,
     address: "localhost",
     port: 8443,
     nameSpace: "/uaa"
   },
   data: [],
   logDirectory: ".",
-  shibboleth: false
+  shibboleth: true
 }

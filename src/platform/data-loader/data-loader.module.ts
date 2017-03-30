@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
@@ -7,11 +7,11 @@ import { HttpModule } from '@angular/http';
   ],
   providers: []
 })
-export class DataModule {
+export class DataLoaderModule {
 
   static forRoot(providedLoader: any): ModuleWithProviders {
     return {
-      ngModule: DataModule,
+      ngModule: DataLoaderModule,
       providers: [
         providedLoader
       ]

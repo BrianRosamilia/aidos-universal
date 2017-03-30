@@ -8,11 +8,17 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { Actions } from '@ngrx/effects';
+
 import { BrowserTransferStateModule } from '../platform/transfer-state/browser-transfer-state.module';
 
-import { DataLoader } from '../platform/data-loader/data.loader';
-import { BrowserDataLoader } from '../platform/data-loader/browser-data.loader';
-import { DataModule } from '../platform/data-loader/data.module';
+import { TransferStoreEffects } from '../platform/transfer-store/transfer-store.effects';
+import { BrowserTransferStoreEffects } from '../platform/transfer-store/browser-transfer-store.effects';
+import { TransferStoreModule } from '../platform/transfer-store/transfer-store.module';
+
+import { DataLoader } from '../platform/data-loader/data-loader';
+import { BrowserDataLoader } from '../platform/data-loader/browser-data-loader';
+import { DataLoaderModule } from '../platform/data-loader/data-loader.module';
 
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
@@ -21,6 +27,10 @@ import { GLOBAL_CONFIG, ENV_CONFIG } from '../config';
 
 export function getConfig() {
   return ENV_CONFIG;
+}
+
+export function createTransferStoreEffects(actions: Actions) {
+  return new BrowserTransferStoreEffects(actions);
 }
 
 export function createDataLoader(http: Http) {
@@ -44,10 +54,15 @@ export function HttpLoaderFactory(http: Http) {
         deps: [Http]
       }
     }),
-    DataModule.forRoot({
+    DataLoaderModule.forRoot({
       provide: DataLoader,
       useFactory: (createDataLoader),
       deps: [Http]
+    }),
+    TransferStoreModule.forRoot({
+      provide: TransferStoreEffects,
+      useFactory: (createTransferStoreEffects),
+      deps: [Actions]
     }),
     NgbModule.forRoot(),
     BrowserTransferStateModule,

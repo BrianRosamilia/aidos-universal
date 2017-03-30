@@ -1,9 +1,9 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" *ngIf="headerState | async as header">
   <button class="navbar-toggler navbar-toggler-right" type="button" (click)="toggleNavbar()" aria-controls="aidos-navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   <a class="navbar-brand" routerLink="/">{{ 'title' | translate }}</a>
-  <div [ngbCollapse]="navbarCollapsed | async" class="collapse navbar-collapse" id="aidos-navbar">
+  <div [ngbCollapse]="header.navbarCollapsed" class="collapse navbar-collapse" id="aidos-navbar">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/home" routerLinkActive="active"><i class="fa fa-home fa-fw" aria-hidden="true"></i> {{ 'links.home' | translate }}</a>
@@ -12,10 +12,15 @@
         <a class="nav-link" routerLink="/about" routerLinkActive="active"><i class="fa fa-info fa-fw" aria-hidden="true"></i> {{ 'links.about' | translate }}</a>
       </li>
     </ul>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav" *ngIf="!header.hideLogin">
       <li class="nav-item">
         <a *ngIf="config.shibboleth" class="nav-link clickable" (click)="login()"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {{ 'links.login' | translate }}</a>
         <a *ngIf="!config.shibboleth" class="nav-link clickable" href="{{ config.auth.baseUrl }}/basic/login"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {{ 'links.login' | translate }}</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav" *ngIf="header.hideLogin && userState | async as user">
+      <li class="nav-item">
+        <a class="nav-link clickable"><i class="fa fa-user fa-fw" aria-hidden="true"></i> {{ user.username }}</a>
       </li>
     </ul>
   </div>

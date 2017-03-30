@@ -4,9 +4,14 @@ import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { RouterStoreModule } from '@ngrx/router-store';
+
+import { TransferState } from '../platform/transfer-state/transfer-state';
+
+import { AppState } from './store/app-state.store';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -51,5 +56,11 @@ import { HeaderEffects } from './header/ngrx/header.effects';
   entryComponents: [LoginModalComponent]
 })
 export class AppModule {
+
+  constructor(private cache: TransferState, private store: Store<AppState>) {
+    // Gotcha!!!
+    cache.initialize();
+    console.log('Cache:', cache.toJson());
+  }
 
 }

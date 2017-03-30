@@ -1,9 +1,6 @@
 /* Fonts */
-
 $fa-font-path: "../assets/fonts";
-
 /* Bootstrap overrides */
-
 $white: #fff !default;
 $black: #000 !default;
 $red: #d9534f !default;
@@ -14,31 +11,23 @@ $blue: #0275d8 !default;
 $teal: #5bc0de !default;
 $pink: #ff5b77 !default;
 $purple: #613d7c !default;
-
 /* Create grayscale */
-
 $gray-dark: #292b2c !default;
 $gray: #464a4c !default;
 $gray-light: #636c72 !default;
 $gray-lighter: #eceeef !default;
 $gray-lightest: #f7f7f9 !default;
-
 /* Reassign color vars to semantic color scheme */
-
-$brand-primary: #3c0000 !default;
-$brand-secondary: #500000 !default;
+$brand-primary: #000066 !default;
+$brand-secondary: #ff9900 !default;
 $brand-success: $green !default;
 $brand-info: $teal !default;
 $brand-warning: $orange !default;
 $brand-danger: $red !default;
 $brand-inverse: $brand-primary !default;
-
 /* Footer */
-
 $navbar-bottom-border-color: $gray-dark !default;
-
 /* Footer */
-
 $footer-content-background-color: $gray-lighter !default;
 $footer-content-top-border-color: $gray-light !default;
 $footer-content-color: $brand-secondary !default;

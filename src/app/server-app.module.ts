@@ -10,13 +10,20 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { Actions } from '@ngrx/effects';
+
+import { TranslateUniversalLoader } from '../platform/translate-universal-loader';
+
 import { ServerTransferStateModule } from '../platform/transfer-state/server-transfer-state.module';
 import { TransferState } from '../platform/transfer-state/transfer-state';
 
-import { TranslateUniversalLoader } from '../platform/translate-universal-loader';
-import { DataLoader } from '../platform/data-loader/data.loader';
-import { ServerDataLoader } from '../platform/data-loader/server-data.loader';
-import { DataModule } from '../platform/data-loader/data.module';
+import { TransferStoreEffects } from '../platform/transfer-store/transfer-store.effects';
+import { ServerTransferStoreEffects } from '../platform/transfer-store/server-transfer-store.effects';
+import { TransferStoreModule } from '../platform/transfer-store/transfer-store.module';
+
+import { DataLoader } from '../platform/data-loader/data-loader';
+import { ServerDataLoader } from '../platform/data-loader/server-data-loader';
+import { DataLoaderModule } from '../platform/data-loader/data-loader.module';
 
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
@@ -36,6 +43,10 @@ export function boot(state: TransferState, applicationRef: ApplicationRef) {
 
 export function getConfig() {
   return ENV_CONFIG;
+}
+
+export function createTransferStoreEffects(actions: Actions, cache: TransferState) {
+  return new ServerTransferStoreEffects(actions, cache);
 }
 
 export function createDataLoader() {
@@ -59,7 +70,15 @@ export function UniversalLoaderFactory() {
         deps: []
       }
     }),
-    DataModule.forRoot({
+    TransferStoreModule.forRoot({
+      provide: TransferStoreEffects,
+      useFactory: (createTransferStoreEffects),
+      deps: [
+        Actions,
+        TransferState
+      ]
+    }),
+    DataLoaderModule.forRoot({
       provide: DataLoader,
       useFactory: (createDataLoader),
       deps: []

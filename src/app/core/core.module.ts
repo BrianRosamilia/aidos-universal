@@ -3,13 +3,17 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { WindowEffects } from './window/ngrx/window.effects';
 import { AuthEffects } from '../auth/ngrx/auth.effects';
+import { UserEffects } from '../auth/user/ngrx/user.effects';
+import { TransferStoreEffects } from '../../platform/transfer-store/transfer-store.effects';
 
 import { AuthService } from '../auth/auth.service';
 import { DataService } from './data.service';
 
 const MODULES = [
   EffectsModule.run(WindowEffects),
-  EffectsModule.run(AuthEffects)
+  EffectsModule.run(AuthEffects),
+  EffectsModule.run(UserEffects),
+  EffectsModule.run(<any>TransferStoreEffects)
 ];
 
 const COMPONENTS = [

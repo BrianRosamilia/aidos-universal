@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import * as fs from 'fs';
 
-import { DataLoader } from './data.loader';
+import { DataLoader } from './data-loader';
 
 export class ServerDataLoader extends DataLoader {
 

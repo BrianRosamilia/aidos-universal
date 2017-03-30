@@ -1,7 +1,7 @@
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { DataLoader } from './data.loader';
+import { DataLoader } from './data-loader';
 
 export class BrowserDataLoader extends DataLoader {
 

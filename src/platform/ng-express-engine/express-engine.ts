@@ -95,9 +95,7 @@ export function ngExpressEngine(setupOptions: NgSetupOptions) {
 /**
  * Get a factory from a bootstrapped module/ module factory
  */
-function getFactory(
-  moduleOrFactory: Type<{}> | NgModuleFactory<{}>, compiler: Compiler
-): Promise<NgModuleFactory<{}>> {
+function getFactory(moduleOrFactory: Type<{}> | NgModuleFactory<{}>, compiler: Compiler): Promise<NgModuleFactory<{}>> {
   return new Promise<NgModuleFactory<{}>>((resolve, reject) => {
     // If module has been compiled AoT
     if (moduleOrFactory instanceof NgModuleFactory) {

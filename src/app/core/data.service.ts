@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
-import { DataLoader } from '../../platform/data-loader/data.loader';
+import { DataLoader } from '../../platform/data-loader/data-loader';
 
 import { TransferState } from '../../platform/transfer-state/transfer-state';
 
