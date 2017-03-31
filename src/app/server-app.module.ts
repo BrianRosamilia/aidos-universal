@@ -17,6 +17,8 @@ import { TranslateUniversalLoader } from '../platform/translate-universal-loader
 
 import { AppState } from './store/app-state.store';
 
+import { AuthAction, AuthActionType } from './auth/ngrx/auth.actions';
+
 import { ServerTransferStateModule } from '../platform/transfer-state/server-transfer-state.module';
 import { TransferState } from '../platform/transfer-state/transfer-state';
 
@@ -32,8 +34,6 @@ import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
 import { GLOBAL_CONFIG, ENV_CONFIG } from '../config';
-
-import { AuthAction, AuthActionType } from './auth/ngrx/auth.actions';
 
 export function boot(state: TransferState, appRef: ApplicationRef, store: Store<AppState>, config: any) {
   // check cookies for JSESSIONID, perform AuthAction LOGIN

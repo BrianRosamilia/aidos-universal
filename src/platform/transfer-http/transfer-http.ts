@@ -26,8 +26,8 @@ export class TransferHttp {
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
     return this.getData(url, options, (url: string, options: RequestOptionsArgs) => {
-      console.log('get', url);
-      console.log('options', options);
+      console.log('GET:', url);
+      console.log('Options:', options);
       return this.http.get(url, options);
     });
   }

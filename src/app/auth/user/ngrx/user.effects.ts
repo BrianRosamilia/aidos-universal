@@ -19,7 +19,9 @@ export class UserEffects {
   @Effect() login = this.actions
     .ofType(AuthActionTypes[AuthActionType.LOGIN])
     .map((action: AuthAction) => action.payload)
-    .switchMap((payload) => this.http.get(this.config.zuul.baseUrl + '/uaa/user-details', { withCredentials: true })
+    .switchMap((payload) => this.http.get(this.config.zuul.baseUrl + '/uaa/user-details', {
+      withCredentials: true,
+    })
       .map((response: any) => new UserAction(UserActionType.SET, response)));
 
   @Effect() logout = this.actions.ofType(AuthActionTypes[AuthActionType.LOGOUT]).map(() => new UserAction(UserActionType.UNSET));

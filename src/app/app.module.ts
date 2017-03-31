@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -29,9 +29,9 @@ import { HeaderEffects } from './header/ngrx/header.effects';
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
     CoreModule,
     SharedModule,
+    HttpModule,
     TransferHttpModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

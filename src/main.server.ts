@@ -80,6 +80,9 @@ if (ENV_CONFIG.ui.ssl) {
       certificate: certificate
     });
   } else {
+
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+
     pem.createCertificate({
       days: 1,
       selfSigned: true
