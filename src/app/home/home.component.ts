@@ -18,7 +18,7 @@ export class HomeComponent {
   public data: Observable<any>;
 
   constructor(private http: TransferHttp) {
-    this.userDetails();
+
   }
 
   userDetails(): void {

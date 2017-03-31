@@ -35,7 +35,7 @@ import { AppModule } from './app.module';
 
 import { GLOBAL_CONFIG, ENV_CONFIG } from '../config';
 
-export function boot(state: TransferState, appRef: ApplicationRef, store: Store<AppState>, config: any) {
+export function boot(cache: TransferState, appRef: ApplicationRef, store: Store<AppState>, config: any) {
   // check cookies for JSESSIONID, perform AuthAction LOGIN
   if (config.cookie) {
     const cookies: string[] = config.cookie.split(';');
@@ -51,7 +51,7 @@ export function boot(state: TransferState, appRef: ApplicationRef, store: Store<
 
   return () => {
     appRef.isStable.filter((stable: boolean) => stable).first().subscribe(() => {
-      state.inject();
+      cache.inject();
     });
   };
 }

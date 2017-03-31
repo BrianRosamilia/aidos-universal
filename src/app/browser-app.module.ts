@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +25,12 @@ import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
 import { GLOBAL_CONFIG, ENV_CONFIG } from '../config';
+
+export function init(cache: TransferState) {
+  return () => {
+    cache.initialize();
+  };
+}
 
 export function getConfig() {
   return ENV_CONFIG;
@@ -71,13 +77,17 @@ export function HttpLoaderFactory(http: Http) {
     AppModule
   ],
   providers: [
-    { provide: GLOBAL_CONFIG, useFactory: (getConfig) }
+    { provide: GLOBAL_CONFIG, useFactory: (getConfig) },
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: init,
+      deps: [
+        TransferState
+      ]
+    }
   ]
 })
 export class BrowserAppModule {
-
-  constructor(private cache: TransferState) {
-    cache.initialize();
-  }
 
 }
