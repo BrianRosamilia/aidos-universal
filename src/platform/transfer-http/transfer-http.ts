@@ -11,6 +11,7 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class TransferHttp {
+
   constructor(private http: Http, protected transferState: TransferState) { }
 
   request(uri: string | Request, options?: RequestOptionsArgs): Observable<any> {
@@ -25,6 +26,8 @@ export class TransferHttp {
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
     return this.getData(url, options, (url: string, options: RequestOptionsArgs) => {
+      console.log('GET:', url);
+      console.log('Options:', options);
       return this.http.get(url, options);
     });
   }

@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 
-export abstract class TransferState {
+import { Action } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+
+import { AppState } from '../../app/store/app-state.store';
+
+@Injectable()
+export class TransferState {
 
   protected map = new Map<string, any>();
 
@@ -25,8 +31,12 @@ export abstract class TransferState {
     return json;
   }
 
-  abstract inject();
+  initialize(): void {
+    console.log('Initialize does nothing!');
+  }
 
-  abstract initialize();
+  inject(): void {
+    console.log('Inject does nothing!');
+  }
 
 }

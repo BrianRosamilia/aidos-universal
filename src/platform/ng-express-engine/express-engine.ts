@@ -1,12 +1,11 @@
 import * as fs from 'fs';
 
-import {  Request, Response, Send } from 'express';
+import { Request, Response, Send } from 'express';
 
-import {  Provider, NgModuleFactory, InjectionToken, Type, CompilerFactory, Compiler } from '@angular/core';
-import {  INITIAL_CONFIG, renderModuleFactory, platformDynamicServer } from '@angular/platform-server';
+import { Provider, NgModuleFactory, InjectionToken, Type, CompilerFactory, Compiler } from '@angular/core';
+import { INITIAL_CONFIG, renderModuleFactory, platformDynamicServer } from '@angular/platform-server';
 
-// tslint:disable-next-line:quotemark
-import { ResourceLoader } from "@angular/compiler";
+import { ResourceLoader } from '@angular/compiler';
 
 import { FileLoader } from './file-loader';
 

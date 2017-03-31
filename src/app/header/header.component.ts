@@ -33,8 +33,8 @@ export class HeaderComponent {
   public userState: Observable<UserState>;
 
   constructor(private translate: TranslateService, private store: Store<AppState>, private modalService: NgbModal, private authService: AuthService, @Inject(GLOBAL_CONFIG) public config: GlobalConfig) {
-    this.headerState = this.store.select((state: AppState) => state['header']);
-    this.userState = this.store.select((state: AppState) => state['user']);
+    this.headerState = this.store.select((state: AppState) => state.header);
+    this.userState = this.store.select((state: AppState) => state.user);
   }
 
   public toggleNavbar(): void {

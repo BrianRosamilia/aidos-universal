@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/first';
 
-import { NgModule, ApplicationRef, APP_BOOTSTRAP_LISTENER } from '@angular/core';
-import { ServerModule } from '@angular/platform-server';
+import { ApplicationRef, Inject, NgModule, APP_BOOTSTRAP_LISTENER } from '@angular/core';
+import { INITIAL_CONFIG, ServerModule } from '@angular/platform-server';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -10,9 +10,14 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { Store } from '@ngrx/store';
 import { Actions } from '@ngrx/effects';
 
 import { TranslateUniversalLoader } from '../platform/translate-universal-loader';
+
+import { AppState } from './store/app-state.store';
+
+import { AuthAction, AuthActionType } from './auth/ngrx/auth.actions';
 
 import { ServerTransferStateModule } from '../platform/transfer-state/server-transfer-state.module';
 import { TransferState } from '../platform/transfer-state/transfer-state';
@@ -30,14 +35,24 @@ import { AppModule } from './app.module';
 
 import { GLOBAL_CONFIG, ENV_CONFIG } from '../config';
 
-export function boot(state: TransferState, applicationRef: ApplicationRef) {
+export function boot(cache: TransferState, appRef: ApplicationRef, store: Store<AppState>, config: any) {
+  // check cookies for JSESSIONID, perform AuthAction LOGIN
+  if (config.cookie) {
+    const cookies: string[] = config.cookie.split(';');
+    for (let i in cookies) {
+      if (cookies[i].trim().indexOf('JSESSIONID') === 0) {
+        store.dispatch(new AuthAction(AuthActionType.LOGIN, {
+          cookie: cookies[i].trim(),
+          authenticated: true
+        }));
+      }
+    }
+  }
+
   return () => {
-    applicationRef.isStable
-      .filter((stable: boolean) => stable)
-      .first()
-      .subscribe(() => {
-        state.inject();
-      });
+    appRef.isStable.filter((stable: boolean) => stable).first().subscribe(() => {
+      cache.inject();
+    });
   };
 }
 
@@ -97,7 +112,9 @@ export function UniversalLoaderFactory() {
       useFactory: boot,
       deps: [
         TransferState,
-        ApplicationRef
+        ApplicationRef,
+        Store,
+        INITIAL_CONFIG
       ]
     }
   ]

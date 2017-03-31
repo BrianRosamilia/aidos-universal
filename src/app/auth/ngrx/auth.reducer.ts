@@ -3,17 +3,17 @@ import { AuthAction, AuthActionType, AuthActionTypes } from './auth.actions';
 import { Record } from 'immutable';
 
 export interface AuthState {
-  sessionId: string;
+  cookie: string;
   authenticated: boolean;
 }
 
 const initialAuth = {
-  sessionId: undefined,
+  cookie: undefined,
   authenticated: false
 };
 
 class AuthStateRecord extends Record(initialAuth) implements AuthState {
-  sessionId: string;
+  cookie: string;
   authenticated: boolean;
   constructor(data) {
     super(data);

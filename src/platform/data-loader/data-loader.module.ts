@@ -1,10 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { HttpModule } from '@angular/http';
 
 @NgModule({
-  imports: [
-    HttpModule
-  ],
+  imports: [],
   providers: []
 })
 export class DataLoaderModule {

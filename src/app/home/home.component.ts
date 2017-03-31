@@ -34,7 +34,7 @@ export class HomeComponent {
   }
 
   test() {
-    this.data = this.http.get('https://localhost:8765/dam/public/test').map((data: any) => {
+    this.data = this.http.get('https://localhost:8765/manage/info').map((data: any) => {
       return data;
     });
   }

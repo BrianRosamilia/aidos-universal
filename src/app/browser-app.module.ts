@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { Http } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Actions } from '@ngrx/effects';
 
 import { BrowserTransferStateModule } from '../platform/transfer-state/browser-transfer-state.module';
+import { TransferState } from '../platform/transfer-state/transfer-state';
 
 import { TransferStoreEffects } from '../platform/transfer-store/transfer-store.effects';
 import { BrowserTransferStoreEffects } from '../platform/transfer-store/browser-transfer-store.effects';
@@ -24,6 +25,12 @@ import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
 import { GLOBAL_CONFIG, ENV_CONFIG } from '../config';
+
+export function init(cache: TransferState) {
+  return () => {
+    cache.initialize();
+  };
+}
 
 export function getConfig() {
   return ENV_CONFIG;
@@ -70,7 +77,15 @@ export function HttpLoaderFactory(http: Http) {
     AppModule
   ],
   providers: [
-    { provide: GLOBAL_CONFIG, useFactory: (getConfig) }
+    { provide: GLOBAL_CONFIG, useFactory: (getConfig) },
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: init,
+      deps: [
+        TransferState
+      ]
+    }
   ]
 })
 export class BrowserAppModule {

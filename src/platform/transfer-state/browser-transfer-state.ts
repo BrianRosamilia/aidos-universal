@@ -15,7 +15,7 @@ export class BrowserTransferState extends TransferState {
   }
 
   initialize() {
-    console.log('Browser transfer initialize.');
+    // tslint:disable-next-line:no-string-literal
     const state: any = window['TRANSFER_STATE'] || {};
     Object.keys(state).forEach((key: string) => {
       if (key === 'actions') {
@@ -27,10 +27,6 @@ export class BrowserTransferState extends TransferState {
         this.set(key, state[key]);
       }
     });
-  }
-
-  inject() {
-    console.log('Browser transfer inject.');
   }
 
 }
