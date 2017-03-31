@@ -29,8 +29,4 @@ export class BrowserTransferState extends TransferState {
     });
   }
 
-  inject() {
-    console.log('Browser transfer inject.');
-  }
-
 }

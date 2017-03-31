@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Actions } from '@ngrx/effects';
 
 import { BrowserTransferStateModule } from '../platform/transfer-state/browser-transfer-state.module';
+import { TransferState } from '../platform/transfer-state/transfer-state';
 
 import { TransferStoreEffects } from '../platform/transfer-store/transfer-store.effects';
 import { BrowserTransferStoreEffects } from '../platform/transfer-store/browser-transfer-store.effects';
@@ -74,5 +75,9 @@ export function HttpLoaderFactory(http: Http) {
   ]
 })
 export class BrowserAppModule {
+
+  constructor(private cache: TransferState) {
+    cache.initialize();
+  }
 
 }

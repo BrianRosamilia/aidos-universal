@@ -58,8 +58,6 @@ import { HeaderEffects } from './header/ngrx/header.effects';
 export class AppModule {
 
   constructor(private cache: TransferState, private store: Store<AppState>) {
-    // Gotcha!!!
-    cache.initialize();
     console.log('Cache:', cache.toJson());
   }
 

@@ -18,9 +18,19 @@ import { GLOBAL_CONFIG, GlobalConfig } from '../config';
 })
 export class AppComponent {
 
-  constructor(private translate: TranslateService, private store: Store<AppState>, @Inject(GLOBAL_CONFIG) public config: GlobalConfig) {
+  constructor(private translate: TranslateService, private cache: TransferState, private store: Store<AppState>, @Inject(GLOBAL_CONFIG) public config: GlobalConfig) {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
+  }
+
+  ngAfterViewChecked() {
+    this.syncCache();
+  }
+
+  syncCache() {
+    this.store.take(1).subscribe((state: AppState) => {
+      this.cache.set('state', state);
+    });
   }
 
   @HostListener('window:resize', ['$event'])
