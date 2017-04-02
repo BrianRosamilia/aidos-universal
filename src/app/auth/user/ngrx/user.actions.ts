@@ -19,6 +19,7 @@ export class UserAction implements Action {
   constructor(type: UserActionType, payload?: UserState) {
     this.type = UserActionTypes[type];
     if (type === UserActionType.SET) {
+      console.log(payload);
       this.payload = payload;
     }
   }

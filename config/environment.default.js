@@ -9,13 +9,9 @@ module.exports = {
     address: "localhost",
     port: 8765
   },
-  auth: {
-    ssl: true,
-    address: "localhost",
-    port: 8443,
-    nameSpace: "/uaa"
-  },
   data: [],
   logDirectory: ".",
-  shibboleth: true
+  shibboleth: true,
+  clientId: 'aidos',
+  clientSecret: 'aidos-secret'
 }

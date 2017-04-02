@@ -3,17 +3,17 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { AboutComponent } from './about.component';
+import { LoginComponent } from './login.component';
 
 @NgModule({
-  declarations: [AboutComponent],
+  declarations: [LoginComponent],
   imports: [
     SharedModule,
     RouterModule.forChild([
-      { path: '', component: AboutComponent, pathMatch: 'full' }
+      { path: '', component: LoginComponent, pathMatch: 'full' }
     ])
   ]
 })
-export class AboutModule {
+export class LoginModule {
 
 }

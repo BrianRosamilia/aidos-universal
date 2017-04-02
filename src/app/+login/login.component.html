@@ -1,0 +1,30 @@
+<div class="container">
+  <div>
+    <form id="loginForm" name="login" [formGroup]="form" (ngSubmit)="login(form.value)" novalidate>
+      <div class="control-group form-group" [ngClass]="{ 'has-success': form.controls['username'].valid, 'has-danger': !form.controls['username'].valid && form.controls['username'].touched }">
+        <div class="controls">
+          <label>{{ 'login.form.username.label' | translate }}</label>
+          <input type="text" class="form-control" id="username" name="username" [formControl]="form.controls['username']" [ngClass]="{ 'form-control-success': form.controls['username'].valid, 'form-control-danger': !form.controls['username'].valid }">
+          <small class="form-text text-muted">{{ 'login.form.username.help' | translate }}</small>
+          <div class="form-control-feedback" *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched">{{ 'login.form.username.validation.required' | translate }}</div>
+          <div class="form-control-feedback" *ngIf="form.controls['username'].hasError('minlength') && form.controls['username'].touched">{{ 'login.form.username.validation.minLength' | translate }}</div>
+          <div class="form-control-feedback" *ngIf="form.controls['username'].hasError('maxlength') && form.controls['username'].touched">{{ 'login.form.username.validation.maxLength' | translate }}</div>
+        </div>
+      </div>
+      <div class="control-group form-group" [ngClass]="{ 'has-success': form.controls['password'].valid, 'has-danger': !form.controls['password'].valid && form.controls['password'].touched }">
+        <div class="controls">
+          <label>{{ 'login.form.password.label' | translate }}</label>
+          <input type="password" class="form-control" id="password" name="password" [formControl]="form.controls['password']" [ngClass]="{ 'form-control-success': form.controls['password'].valid, 'form-control-danger': !form.controls['password'].valid }">
+          <small class="form-text text-muted">{{ 'login.form.password.help' | translate }}</small>
+          <div class="form-control-feedback" *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched">{{ 'login.form.password.validation.required' | translate }}</div>
+          <div class="form-control-feedback" *ngIf="form.controls['password'].hasError('minlength') && form.controls['password'].touched">{{ 'login.form.password.validation.minLength' | translate }}</div>
+          <div class="form-control-feedback" *ngIf="form.controls['password'].hasError('maxlength') && form.controls['password'].touched">{{ 'login.form.password.validation.maxLength' | translate }}</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{ 'login.form.submit' | translate }}</button>
+    </form>
+  </div>
+  <div class="shibboleth-login">
+    <span><a class="btn btn-primary" href="{{ config.zuul.baseUrl }}/login">{{ 'login.shibboleth' | translate }}</a></span>
+  </div>
+</div>

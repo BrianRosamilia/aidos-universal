@@ -6,11 +6,27 @@
     "login": "Login"
   },
   "login": {
-    "modal": {
-      "header": "Select method of authentication:",
-      "basic": "Basic",
-      "shibboleth": "Shibboleth",
-      "close": "Cancel"
-    }
+    "form": {
+      "username": {
+        "label": "Username",
+        "help": "Username goes here.",
+        "validation": {
+          "required": "Username is required!",
+          "minLength": "Username must be at least 6 characters!",
+          "maxLength": "Username cannot be more then 50 characters!"
+        }
+      },
+      "password": {
+        "label": "Password",
+        "help": "Password goes here.",
+        "validation": {
+          "required": "Password is required!",
+          "minLength": "Password must be at least 6 characters!",
+          "maxLength": "Password cannot be more then 50 characters!"
+        }
+      },
+      "submit": "Login"
+    },
+    "shibboleth": "Shibboleth Login"
   }
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { EffectsModule } from '@ngrx/effects';
 
 import { WindowEffects } from './window/ngrx/window.effects';

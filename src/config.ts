@@ -11,11 +11,13 @@ interface ServerConfig {
 interface GlobalConfig {
   ui: ServerConfig;
   zuul: ServerConfig;
-  auth: ServerConfig;
   data: string[];
   production: boolean;
   logDirectory: string;
   shibboleth: boolean;
+  clientId: string;
+  clientSecret: string;
+  authorizationKey: string;
 };
 
 const GLOBAL_CONFIG: InjectionToken<GlobalConfig> = new InjectionToken<GlobalConfig>('config');
@@ -66,6 +68,10 @@ for (let key in ENV_CONFIG) {
       ENV_CONFIG[key].nameSpace ? ENV_CONFIG[key].nameSpace : ''
     ].join('');
   }
+}
+
+if (ENV_CONFIG.clientId && ENV_CONFIG.clientSecret) {
+  ENV_CONFIG.authorizationKey = new Buffer([ENV_CONFIG.clientId, ENV_CONFIG.clientSecret].join(':')).toString('base64');
 }
 
 export { GlobalConfig, GLOBAL_CONFIG, ENV_CONFIG }

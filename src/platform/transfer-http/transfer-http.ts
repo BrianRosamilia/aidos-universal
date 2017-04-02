@@ -36,8 +36,11 @@ export class TransferHttp {
    */
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
-    return this.getPostData(url, body, options, (url: string, options: RequestOptionsArgs) => {
-      return this.http.post(url, body.options);
+    return this.getPostData(url, body, options, (url: string, body: any, options: RequestOptionsArgs) => {
+      console.log('GET:', url);
+      console.log('Body:', body);
+      console.log('Options:', options);
+      return this.http.post(url, body, options);
     });
   }
   /**
@@ -63,8 +66,8 @@ export class TransferHttp {
    */
   patch(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
-    return this.getPostData(url, body, options, (url: string, options: RequestOptionsArgs) => {
-      return this.http.patch(url, body.options);
+    return this.getPostData(url, body, options, (url: string, body: any, options: RequestOptionsArgs) => {
+      return this.http.patch(url, body, options);
     });
   }
   /**

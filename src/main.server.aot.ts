@@ -50,7 +50,7 @@ app.use('/', express.static('dist', { index: false }));
 
 ROUTES.forEach((route: string) => {
   app.get(route, (req, res) => {
-    res.cookie('uiOrigin', ENV_CONFIG.ui.baseUrl, {
+    res.cookie('ui_origin', ENV_CONFIG.ui.baseUrl, {
       maxAge: 1000 * 60 * 15,
       httpOnly: true,
       signed: false

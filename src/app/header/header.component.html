@@ -14,8 +14,7 @@
     </ul>
     <ul class="navbar-nav" *ngIf="!header.hideLogin">
       <li class="nav-item">
-        <a *ngIf="config.shibboleth" class="nav-link clickable" (click)="login()"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {{ 'links.login' | translate }}</a>
-        <a *ngIf="!config.shibboleth" class="nav-link clickable" href="{{ config.auth.baseUrl }}/basic/login"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {{ 'links.login' | translate }}</a>
+        <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {{ 'links.login' | translate }}</a>
       </li>
     </ul>
     <ul class="navbar-nav" *ngIf="header.hideLogin && userState | async as user">

@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginModalComponent } from './auth/login/login-modal.component';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -36,7 +35,8 @@ import { HeaderEffects } from './header/ngrx/header.effects';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent, pathMatch: 'full' },
-      { path: 'about', loadChildren: './+about/about.module#AboutModule' }
+      { path: 'about', loadChildren: './+about/about.module#AboutModule' },
+      { path: 'login', loadChildren: './+login/login.module#LoginModule' }
     ]),
     StoreModule.provideStore(rootReducer),
     RouterStoreModule.connectRouter(),
@@ -49,11 +49,9 @@ import { HeaderEffects } from './header/ngrx/header.effects';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent,
-    LoginModalComponent
+    FooterComponent
   ],
-  exports: [AppComponent],
-  entryComponents: [LoginModalComponent]
+  exports: [AppComponent]
 })
 export class AppModule {
 

@@ -18,9 +18,9 @@
     <div [innerHTML]="greetings | aidosPrettyPrint"></div>
   </div>
 
-  <div *ngIf="data | async as test" class="col-md-10 col-offset-1">
+  <div *ngIf="results | async as results" class="col-md-10 col-offset-1">
     <span><strong>Test:</strong></span>
-    <div [innerHTML]="test | aidosPrettyPrint"></div>
+    <div [innerHTML]="results | aidosPrettyPrint"></div>
   </div>
 
 </div>

@@ -17,6 +17,10 @@ import { TransferStoreEffects } from '../platform/transfer-store/transfer-store.
 import { BrowserTransferStoreEffects } from '../platform/transfer-store/browser-transfer-store.effects';
 import { TransferStoreModule } from '../platform/transfer-store/transfer-store.module';
 
+import { Cookies } from '../platform/cookies/cookies';
+import { BrowserCookies } from '../platform/cookies/browser-cookies';
+import { CookiesModule } from '../platform/cookies/cookies.module';
+
 import { DataLoader } from '../platform/data-loader/data-loader';
 import { BrowserDataLoader } from '../platform/data-loader/browser-data-loader';
 import { DataLoaderModule } from '../platform/data-loader/data-loader.module';
@@ -40,6 +44,10 @@ export function createTransferStoreEffects(actions: Actions) {
   return new BrowserTransferStoreEffects(actions);
 }
 
+export function createCookies() {
+  return new BrowserCookies();
+}
+
 export function createDataLoader(http: Http) {
   return new BrowserDataLoader(http, 'assets/data', '.json');
 }
@@ -61,15 +69,20 @@ export function HttpLoaderFactory(http: Http) {
         deps: [Http]
       }
     }),
-    DataLoaderModule.forRoot({
-      provide: DataLoader,
-      useFactory: (createDataLoader),
-      deps: [Http]
-    }),
     TransferStoreModule.forRoot({
       provide: TransferStoreEffects,
       useFactory: (createTransferStoreEffects),
       deps: [Actions]
+    }),
+    CookiesModule.forRoot({
+      provide: Cookies,
+      useFactory: (createCookies),
+      deps: []
+    }),
+    DataLoaderModule.forRoot({
+      provide: DataLoader,
+      useFactory: (createDataLoader),
+      deps: [Http]
     }),
     NgbModule.forRoot(),
     BrowserTransferStateModule,
