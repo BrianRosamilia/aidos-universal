@@ -3,18 +3,24 @@ import { UserAction, UserActionType, UserActionTypes } from './user.actions';
 import { Record } from 'immutable';
 
 export interface UserState {
+  id: number;
   username: string;
   role: string;
+  details: Map<string, string>;
 }
 
 const initialUser = {
+  id: undefined,
   username: undefined,
-  role: undefined
+  role: undefined,
+  details: undefined
 };
 
 class UserStateRecord extends Record(initialUser) implements UserState {
+  id: number;
   username: string;
   role: string;
+  details: Map<string, string>;
   constructor(data) {
     super(data);
   }
