@@ -1,5 +1,7 @@
 <div class="container">
-  <h2 class="login-header">{{ 'login.header' | translate }}</h2>
+  <div class="row login-header-container">
+    <h2 class="login-header">{{ 'login.header' | translate }}</h2>
+  </div>
   <div class="row login-container">
     <div class="col-md-6 basic-login">
       <form id="loginForm" name="login" [formGroup]="form" (ngSubmit)="login(form.value)" novalidate>
@@ -23,7 +25,7 @@
             <div class="form-control-feedback" *ngIf="form.controls['password'].hasError('maxlength') && form.controls['password'].touched">{{ 'login.form.password.validation.maxLength' | translate }}</div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{ 'login.form.submit' | translate }}</button>
+        <button type="submit" class="btn btn-primary pull-right" [disabled]="!form.valid">{{ 'login.form.submit' | translate }}</button>
       </form>
     </div>
     <div class="col-md-6 shibolleth-login">

@@ -1,18 +1,26 @@
 @import '../../styles/variables';
-.login-container {
+.container {
   max-width: 800px;
-  margin: auto;
-  padding: 10px;
   border: solid 1px $gray-lighter;
   border-radius: $border-radius;
+}
+
+.login-container {
+  margin: auto;
+  padding: 10px;
   .shibolleth-login {
     text-align: center;
     margin: auto;
   }
 }
 
+.login-header-container {
+  padding: 10px 10px 5px 0px;
+  border-bottom: solid 1px $gray-lighter;
+}
+
 .login-header {
-  text-align: center;
+  margin-left: 10px;
 }
 
 @media screen and (min-width: 768px) {

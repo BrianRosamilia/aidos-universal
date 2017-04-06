@@ -2,3 +2,32 @@
 nav.bg-inverse {
   border-bottom: 1px solid $navbar-bottom-border-color;
 }
+
+@media screen and (min-width: 992px) {
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .dropdown-menu {
+    color: $navbar-color;
+    border: 1px solid $navbar-outline-color;
+    background-color: transparent;
+    .dropdown-item:hover {
+      color: $navbar-hover-background-color;
+    }
+  }
+}
+
+a:not([href]):not([tabindex]) .btn-outline-navbar {
+  color: $navbar-color;
+}
+
+.btn-outline-navbar {
+  color: $navbar-color;
+  background-image: none;
+  background-color: transparent;
+  border-color: $navbar-outline-color;
+}

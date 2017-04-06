@@ -49,6 +49,17 @@ export class AuthService {
     });
   }
 
+  public logout(): void {
+    console.log('logout');
+    this.removeAuthCookies().then((cookiesRemoved: boolean) => {
+      if (cookiesRemoved) {
+        this.store.dispatch(new AuthAction(AuthActionType.LOGOUT));
+      } else {
+        console.warn('Unable to remove authentication cookies!');
+      }
+    });
+  }
+
   public user(payload: any): Observable<Response> {
     return this.http.get(this.config.zuul.baseUrl + '/uaa/user-details', {
       headers: new Headers({
@@ -61,9 +72,22 @@ export class AuthService {
   private setAuthCookies(response: any): Promise<boolean> {
     return new Promise((resolve) => {
       // TODO: improve
-      const responseKeys: string[] = Object.keys(response);
-      for (const key of responseKeys) {
-        this.cookies.set(key, response[key], 1);
+      for (const key of this.config.authKeys) {
+        if (response[key] !== undefined) {
+          this.cookies.set(key, response[key], 1);
+        } else {
+          console.warn(['Auth key', key, 'was not in response!'].join(' '));
+        }
+      }
+      resolve(true);
+    });
+  }
+
+  private removeAuthCookies(): Promise<boolean> {
+    return new Promise((resolve) => {
+      // TODO: improve
+      for (const key of this.config.authKeys) {
+        this.cookies.remove(key);
       }
       resolve(true);
     });

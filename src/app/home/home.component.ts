@@ -26,7 +26,7 @@ export class HomeComponent {
   public results: Observable<any>;
 
   // tslint:disable-next-line:variable-name
-  private access_token: string;
+  public access_token: string;
 
   constructor(private http: TransferHttp, private store: Store<AppState>, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
     // tslint:disable-next-line:variable-name

@@ -3,7 +3,13 @@
   "links": {
     "home": "Home",
     "about": "About",
-    "login": "Login"
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "menu": {
+    "header": "User menu"
   },
   "login": {
     "header": "Login",

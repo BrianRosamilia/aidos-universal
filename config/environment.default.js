@@ -9,6 +9,13 @@ module.exports = {
     address: "localhost",
     port: 8765
   },
+  authKeys: [
+    "access_token",
+    "expires_in",
+    "refresh_token",
+    "scope",
+    "token_type"
+  ],
   data: [],
   logDirectory: ".",
   shibboleth: true,

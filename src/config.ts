@@ -11,6 +11,7 @@ interface ServerConfig {
 interface GlobalConfig {
   ui: ServerConfig;
   zuul: ServerConfig;
+  authKeys: string[];
   data: string[];
   production: boolean;
   logDirectory: string;
