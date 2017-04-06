@@ -6,10 +6,11 @@
     "login": "Login"
   },
   "login": {
+    "header": "Login",
     "form": {
       "username": {
         "label": "Username",
-        "help": "Username goes here.",
+        "help": "",
         "validation": {
           "required": "Username is required!",
           "minLength": "Username must be at least 6 characters!",
@@ -18,7 +19,7 @@
       },
       "password": {
         "label": "Password",
-        "help": "Password goes here.",
+        "help": "",
         "validation": {
           "required": "Password is required!",
           "minLength": "Password must be at least 6 characters!",

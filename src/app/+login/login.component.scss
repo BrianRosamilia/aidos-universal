@@ -1,3 +1,36 @@
-.shibboleth-login {
-  margin-top: 20px;
+@import '../../styles/variables';
+.login-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 10px;
+  border: solid 1px $gray-lighter;
+  border-radius: $border-radius;
+  .shibolleth-login {
+    text-align: center;
+    margin: auto;
+  }
+}
+
+.login-header {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .login-container {
+    .basic-login {
+      border-right: solid 1px $gray-lighter;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .login-container {
+    .basic-login {
+      border-bottom: solid 1px $gray-lighter;
+      padding: 15px 5px 15px 5px;
+    }
+    .shibolleth-login {
+      padding: 25px 5px 25px 5px;
+    }
+  }
 }
