@@ -26,39 +26,41 @@ export class HomeComponent {
   public results: Observable<any>;
 
   // tslint:disable-next-line:variable-name
-  public access_token: string;
+  public access_token: Observable<string>;
+
+  private accessToken: string;
 
   constructor(private http: TransferHttp, private store: Store<AppState>, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
     // tslint:disable-next-line:variable-name
-    this.store.select((state: AppState) => state.auth.access_token).subscribe((access_token: string) => {
-      this.access_token = access_token;
+    this.access_token = this.store.select((state: AppState) => state.auth.access_token);
+
+    this.access_token.subscribe((accessToken: string) => {
+      this.accessToken = accessToken;
     });
   }
 
   userDetails(): void {
-    if (this.access_token) {
-      this.user = this.http.get(this.config.zuul.baseUrl + '/uaa/user-details', {
-        headers: new Headers({
-          'Authorization': ['Bearer', this.access_token].join(' '),
-          'Content-Type': 'application/json'
-        })
-      }).map((data: any) => {
-        return data;
-      });
-    }
+    // temporary
+    this.user = this.http.get(this.config.zuul.baseUrl + '/uaa/user-details', {
+      headers: new Headers({
+        'Authorization': ['Bearer', this.accessToken].join(' '),
+        'Content-Type': 'application/json'
+      })
+    }).map((data: any) => {
+      return data;
+    });
   }
 
   greet() {
-    if (this.access_token) {
-      this.greetings = this.http.get(this.config.zuul.baseUrl + '/dam/greetings', {
-        headers: new Headers({
-          'Authorization': ['Bearer', this.access_token].join(' '),
-          'Content-Type': 'application/json'
-        })
-      }).map((data: any) => {
-        return data;
-      });
-    }
+    // temporary
+    this.greetings = this.http.get(this.config.zuul.baseUrl + '/dam/greetings', {
+      headers: new Headers({
+        'Authorization': ['Bearer', this.accessToken].join(' '),
+        'Content-Type': 'application/json'
+      })
+    }).map((data: any) => {
+      return data;
+    });
   }
 
   test() {

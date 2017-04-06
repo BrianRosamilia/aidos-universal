@@ -1,8 +1,8 @@
 <div class="container">
 
-  <button type="button" class="btn btn-primary clickable" (click)="userDetails()" [disabled]="!access_token">User details</button>
+  <button type="button" class="btn btn-primary clickable" (click)="userDetails()" [disabled]="!(access_token | async)">User details</button>
 
-  <button type="button" class="btn btn-primary clickable" (click)="greet()" [disabled]="!access_token">Greet</button>
+  <button type="button" class="btn btn-primary clickable" (click)="greet()" [disabled]="!(access_token | async)">Greet</button>
 
   <button type="button" class="btn btn-primary clickable" (click)="test()">Test</button>
 
