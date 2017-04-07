@@ -41,7 +41,7 @@ import { GLOBAL_CONFIG, ENV_CONFIG } from '../config';
 
 export function boot(cache: TransferState, appRef: ApplicationRef, store: Store<AppState>, config: any) {
   // check cookies for access_token and refresh_token, perform AuthAction LOGIN
-  // TODO: improve
+  // TODO: improve - use authKeys
   if (config.cookie) {
     // tslint:disable:variable-name
     let access_token: string;

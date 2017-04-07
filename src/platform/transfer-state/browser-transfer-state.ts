@@ -14,7 +14,9 @@ export class BrowserTransferState extends TransferState {
     super();
   }
 
+  // TODO: use config value whether to replay actions or rehydrate cache state
   initialize() {
+    console.log(this);
     // tslint:disable-next-line:no-string-literal
     const state: any = window['TRANSFER_STATE'] || {};
     Object.keys(state).forEach((key: string) => {

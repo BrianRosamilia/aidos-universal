@@ -5,6 +5,7 @@ import { Cookies } from './cookies';
 @Injectable()
 export class BrowserCookies implements Cookies {
 
+  // TODO: improve - set domain from configuration value or ui baseUrl
   set(name: string, value: string, days: number, path?: string): void {
     let date: Date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -25,8 +26,9 @@ export class BrowserCookies implements Cookies {
     return cookie;
   }
 
+  // TODO: set path from environment configuration
   remove(name: string): void {
-    this.set(name, '', -1);
+    this.set(name, '', 0, '/');
   }
 
 }
