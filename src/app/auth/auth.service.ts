@@ -72,11 +72,11 @@ export class AuthService {
   private setAuthCookies(response: any): Promise<boolean> {
     return new Promise((resolve) => {
       // TODO: improve
-      for (const key of this.config.authKeys) {
-        if (response[key] !== undefined) {
-          this.cookies.set(key, response[key], 1);
+      for (const name of this.config.cookieNames) {
+        if (response[name] !== undefined) {
+          this.cookies.set(name, response[name], 1);
         } else {
-          console.warn(['Auth key', key, 'was not in response!'].join(' '));
+          console.warn(['Cookie ', name, 'was not in response!'].join(' '));
         }
       }
       resolve(true);
@@ -86,8 +86,8 @@ export class AuthService {
   private removeAuthCookies(): Promise<boolean> {
     return new Promise((resolve) => {
       // TODO: improve
-      for (const key of this.config.authKeys) {
-        this.cookies.remove(key);
+      for (const name of this.config.cookieNames) {
+        this.cookies.remove(name);
       }
       resolve(true);
     });

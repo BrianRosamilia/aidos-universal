@@ -37,52 +37,34 @@ import { DataLoaderModule } from '../platform/data-loader/data-loader.module';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
-import { GLOBAL_CONFIG, ENV_CONFIG } from '../config';
+import { GLOBAL_CONFIG, ENV_CONFIG, GlobalConfig } from '../config';
 
-export function boot(cache: TransferState, appRef: ApplicationRef, store: Store<AppState>, config: any) {
-  // check cookies for access_token and refresh_token, perform AuthAction LOGIN
-  // TODO: improve - use authKeys
-  if (config.cookie) {
-    // tslint:disable:variable-name
-    let access_token: string;
-    let expires_in: number;
-    let refresh_token: string;
-    let scope: string;
-    let token_type: string;
-    // tslint:enable:variable-name
-    const cookies: string[] = config.cookie.split(';');
-    for (const c of cookies) {
-      const cookie: string = c.trim();
-      if (cookie.indexOf('access_token') === 0) {
-        access_token = cookie.split('=')[1];
+export function boot(cache: TransferState, appRef: ApplicationRef, store: Store<AppState>, initialConfig: any, config: GlobalConfig) {
+  if (initialConfig.cookie) {
+    let authentication: any = {
+      authenticated: true
+    };
+    let cookies: string[] = initialConfig.cookie.split(';');
+    config.cookieNames.forEach((name: string) => {
+      let index: number = 0;
+      if (cookies.map((c: string) => c.trim()).some((cookie: string) => {
+        const found: boolean = cookie.indexOf(name) === 0;
+        if (found) {
+          authentication[name] = cookie.split('=')[1];
+        } else {
+          index++;
+        }
+        return found;
+      })) {
+        cookies.splice(index, 1);
+      } else {
+        authentication.authenticated = false;
       }
-      if (cookie.indexOf('expires_in') === 0) {
-        expires_in = Number(cookie.split('=')[1]);
-      }
-      if (cookie.indexOf('refresh_token') === 0) {
-        refresh_token = cookie.split('=')[1];
-      }
-      if (cookie.indexOf('scope') === 0) {
-        scope = cookie.split('=')[1];
-      }
-      if (cookie.indexOf('token_type') === 0) {
-        token_type = cookie.split('=')[1];
-      }
-      if (access_token && expires_in && refresh_token && scope && token_type) {
-        const authenticated: boolean = true;
-        store.dispatch(new AuthAction(AuthActionType.LOGIN, {
-          authenticated: authenticated,
-          access_token: access_token,
-          expires_in: expires_in,
-          refresh_token: refresh_token,
-          scope: scope,
-          token_type: token_type,
-        }));
-        break;
-      }
+    });
+    if (authentication.authenticated) {
+      store.dispatch(new AuthAction(AuthActionType.LOGIN, authentication));
     }
   }
-
   return () => {
     appRef.isStable.filter((stable: boolean) => stable).first().subscribe(() => {
       cache.inject();
@@ -157,7 +139,8 @@ export function UniversalLoaderFactory() {
         TransferState,
         ApplicationRef,
         Store,
-        INITIAL_CONFIG
+        INITIAL_CONFIG,
+        GLOBAL_CONFIG
       ]
     }
   ]

@@ -9,7 +9,7 @@ module.exports = {
     address: "localhost",
     port: 8765
   },
-  authKeys: [
+  cookieNames: [
     "access_token",
     "expires_in",
     "refresh_token",
@@ -18,6 +18,7 @@ module.exports = {
   ],
   data: [],
   logDirectory: ".",
+  prerenderStrategy: 'rehydrate',
   shibboleth: true,
   clientId: 'aidos',
   clientSecret: 'aidos-secret'

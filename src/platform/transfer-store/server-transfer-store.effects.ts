@@ -25,7 +25,7 @@ export class ServerTransferStoreEffects extends TransferStoreEffects {
   }
 
   private cacheAction(action: Action): void {
-    console.log('Cache action:', action);
+    console.info('Cache:', action);
     this.cache.get('actions').push(action);
   }
 

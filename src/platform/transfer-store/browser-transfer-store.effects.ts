@@ -13,12 +13,16 @@ import { TransferStoreEffects } from './transfer-store.effects';
 export class BrowserTransferStoreEffects extends TransferStoreEffects {
 
   @Effect({ dispatch: false }) track = this.actions.ofType(...types()).switchMap((action: Action) => {
-    console.log(action);
+    this.logAction(action);
     return Observable.of({});
   });
 
   constructor(private actions: Actions) {
     super();
+  }
+
+  private logAction(action: Action): void {
+    console.info(action);
   }
 
 }

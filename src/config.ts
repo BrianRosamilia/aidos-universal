@@ -11,13 +11,14 @@ interface ServerConfig {
 interface GlobalConfig {
   ui: ServerConfig;
   zuul: ServerConfig;
-  authKeys: string[];
+  cookieNames: string[];
   data: string[];
-  production: boolean;
   logDirectory: string;
+  prerenderStrategy: string;
   shibboleth: boolean;
   clientId: string;
   clientSecret: string;
+  production: boolean;
   authorizationKey: string;
 };
 
