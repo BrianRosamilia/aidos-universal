@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { UserState } from './user.reducer';
-import { type } from '../../../store/util';
+import { type } from '../../../ngrx/util';
 
 export enum UserActionType {
   SET = 0,

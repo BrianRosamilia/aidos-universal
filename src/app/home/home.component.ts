@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
 
-import { AppState } from '../store/app-state.store';
+import { AppState } from '../ngrx/app.reducer';
 
 import { TransferHttp } from '../../platform/transfer-http/transfer-http';
 

@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { TransferState } from '../platform/transfer-state/transfer-state';
 
-import { AppState } from './store/app-state.store';
+import { AppState } from './ngrx/app.reducer';
 
 import { WindowAction, WindowActionType } from './core/window/ngrx/window.actions';
 

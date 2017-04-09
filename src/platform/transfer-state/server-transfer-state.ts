@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 
 import { TransferState } from './transfer-state';
 
-import { AppState } from '../../app/store/app-state.store';
+import { AppState } from '../../app/ngrx/app.reducer';
 
 import { AuthAction, AuthActionType } from '../../app/auth/ngrx/auth.actions';
 
@@ -18,7 +18,6 @@ export class ServerTransferState extends TransferState {
   }
 
   inject() {
-    // put the store state in the Universal cache
     try {
       const document: any = this.state.getDocument();
       const transferStateString = JSON.stringify(this.toJson());

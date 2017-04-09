@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { WindowState } from './window.reducer';
-import { type } from '../../../store/util';
+import { type } from '../../../ngrx/util';
 
 export enum WindowActionType {
   RESIZE = 0

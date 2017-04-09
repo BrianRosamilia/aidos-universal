@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { AuthState } from './auth.reducer';
-import { type } from '../../store/util';
+import { type } from '../../ngrx/util';
 
 export enum AuthActionType {
   LOGIN = 0,

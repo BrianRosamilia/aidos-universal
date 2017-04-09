@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { AppState } from '../store/app-state.store';
+import { AppState } from '../ngrx/app.reducer';
 
 import { UserState } from '../auth/user/ngrx/user.reducer';
 

@@ -9,7 +9,7 @@ import { TransferHttp } from '../../platform/transfer-http/transfer-http';
 
 import { Cookies } from '../../platform/cookies/cookies';
 
-import { AppState } from '../store/app-state.store';
+import { AppState } from '../ngrx/app.reducer';
 
 import { AuthAction, AuthActionType } from './ngrx/auth.actions';
 import { AuthState } from './ngrx/auth.reducer';
@@ -50,7 +50,6 @@ export class AuthService {
   }
 
   public logout(): void {
-    console.log('logout');
     this.removeAuthCookies().then((cookiesRemoved: boolean) => {
       if (cookiesRemoved) {
         this.store.dispatch(new AuthAction(AuthActionType.LOGOUT));
@@ -71,7 +70,6 @@ export class AuthService {
 
   private setAuthCookies(response: any): Promise<boolean> {
     return new Promise((resolve) => {
-      // TODO: improve
       for (const name of this.config.cookieNames) {
         if (response[name] !== undefined) {
           this.cookies.set(name, response[name], 1);
@@ -85,7 +83,6 @@ export class AuthService {
 
   private removeAuthCookies(): Promise<boolean> {
     return new Promise((resolve) => {
-      // TODO: improve
       for (const name of this.config.cookieNames) {
         this.cookies.remove(name);
       }

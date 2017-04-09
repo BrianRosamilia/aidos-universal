@@ -5,7 +5,7 @@ import { Effect, Actions } from '@ngrx/effects';
 
 import { Observable } from 'rxjs/Observable';
 
-import { types } from '../../app/store/util';
+import { types } from '../../app/ngrx/util';
 
 import { TransferStoreEffects } from './transfer-store.effects';
 

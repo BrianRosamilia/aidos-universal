@@ -18,7 +18,7 @@ module.exports = {
   ],
   data: [],
   logDirectory: ".",
-  prerenderStrategy: 'rehydrate',
+  prerenderStrategy: 'replay',
   shibboleth: true,
   clientId: 'aidos',
   clientSecret: 'aidos-secret'

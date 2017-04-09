@@ -11,7 +11,7 @@ import { RouterStoreModule } from '@ngrx/router-store';
 
 import { TransferState } from '../platform/transfer-state/transfer-state';
 
-import { AppState } from './store/app-state.store';
+import { AppState } from './ngrx/app.reducer';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -22,7 +22,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { TransferHttpModule } from '../platform/transfer-http/transfer-http.module';
 
-import { rootReducer } from './store/app-reducer.store';
+import { appReducer } from './ngrx/app.reducer';
 import { HeaderEffects } from './header/ngrx/header.effects';
 
 @NgModule({
@@ -38,7 +38,7 @@ import { HeaderEffects } from './header/ngrx/header.effects';
       { path: 'about', loadChildren: './+about/about.module#AboutModule' },
       { path: 'login', loadChildren: './+login/login.module#LoginModule' }
     ]),
-    StoreModule.provideStore(rootReducer),
+    StoreModule.provideStore(appReducer),
     RouterStoreModule.connectRouter(),
     EffectsModule.run(HeaderEffects)
   ],
@@ -56,7 +56,7 @@ import { HeaderEffects } from './header/ngrx/header.effects';
 export class AppModule {
 
   constructor(private cache: TransferState, private store: Store<AppState>) {
-    console.log('Cache:', cache.toJson());
+
   }
 
 }

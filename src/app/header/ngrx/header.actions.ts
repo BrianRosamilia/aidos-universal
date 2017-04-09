@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { type } from '../../store/util';
+import { type } from '../../ngrx/util';
 
 export enum HeaderActionType {
   COLLAPSE = 0,

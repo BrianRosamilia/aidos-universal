@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Store } from '@ngrx/store';
 
-import { AppState } from '../../app/store/app-state.store';
+import { AppState } from '../../app/ngrx/app.reducer';
 
 @Injectable()
 export class TransferState {

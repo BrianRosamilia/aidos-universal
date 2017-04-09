@@ -15,7 +15,7 @@ import { Actions } from '@ngrx/effects';
 
 import { TranslateUniversalLoader } from '../platform/translate-universal-loader';
 
-import { AppState } from './store/app-state.store';
+import { AppState } from './ngrx/app.reducer';
 
 import { AuthAction, AuthActionType } from './auth/ngrx/auth.actions';
 
