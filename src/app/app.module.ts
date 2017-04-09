@@ -23,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
 import { TransferHttpModule } from '../platform/transfer-http/transfer-http.module';
 
 import { appReducer } from './ngrx/app.reducer';
+import { AppEffects } from './ngrx/app.effects';
 import { HeaderEffects } from './header/ngrx/header.effects';
 
 @NgModule({
@@ -40,6 +41,7 @@ import { HeaderEffects } from './header/ngrx/header.effects';
     ]),
     StoreModule.provideStore(appReducer),
     RouterStoreModule.connectRouter(),
+    EffectsModule.run(AppEffects),
     EffectsModule.run(HeaderEffects)
   ],
   providers: [

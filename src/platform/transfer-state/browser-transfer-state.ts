@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { Action } from '@ngrx/store';
-import { Store } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 
 import { TransferState } from './transfer-state';
 
@@ -27,10 +26,8 @@ export class BrowserTransferState extends TransferState {
     });
     if (this.config.prerenderStrategy === 'replay') {
       if (cache.actions !== undefined) {
-        for (const action of cache.actions) {
-          console.info('Replay:', action);
-          this.store.dispatch(action);
-        }
+        console.info('Replay:', cache.actions);
+        this.store.dispatch(new AppAction(AppActionType.REPLAY, cache.actions));
       } else {
         console.info('No actions occured during prerender.');
       }

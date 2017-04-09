@@ -25,25 +25,25 @@ export class HomeComponent {
 
   public results: Observable<any>;
 
-  // tslint:disable-next-line:variable-name
-  public access_token: Observable<string>;
-
-  private accessToken: string;
-
   constructor(private http: TransferHttp, private store: Store<AppState>, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
-    // tslint:disable-next-line:variable-name
-    this.access_token = this.store.select((state: AppState) => state.auth.access_token);
-
-    this.access_token.subscribe((accessToken: string) => {
-      this.accessToken = accessToken;
+    this.store.select((state: AppState) => state.auth.access_token).subscribe((accessToken: string) => {
+      if (accessToken !== undefined) {
+        this.userDetails(accessToken);
+        this.greet(accessToken);
+      }
+      else {
+        delete this.user;
+        delete this.greetings;
+      }
     });
+    this.test();
   }
 
-  userDetails(): void {
+  userDetails(accessToken: string): void {
     // temporary
     this.user = this.http.get(this.config.zuul.baseUrl + '/uaa/user-details', {
       headers: new Headers({
-        'Authorization': ['Bearer', this.accessToken].join(' '),
+        'Authorization': ['Bearer', accessToken].join(' '),
         'Content-Type': 'application/json'
       })
     }).map((data: any) => {
@@ -51,11 +51,11 @@ export class HomeComponent {
     });
   }
 
-  greet() {
+  greet(accessToken: string) {
     // temporary
     this.greetings = this.http.get(this.config.zuul.baseUrl + '/dam/greetings', {
       headers: new Headers({
-        'Authorization': ['Bearer', this.accessToken].join(' '),
+        'Authorization': ['Bearer', accessToken].join(' '),
         'Content-Type': 'application/json'
       })
     }).map((data: any) => {

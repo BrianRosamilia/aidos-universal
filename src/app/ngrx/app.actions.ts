@@ -15,11 +15,9 @@ export const AppActionTypes = [
 
 export class AppAction implements Action {
   type: string;
-  payload: AppState;
-  constructor(type: AppActionType, payload?: AppState) {
+  payload: AppState | Action[];
+  constructor(type: AppActionType, payload: AppState | Action[]) {
     this.type = AppActionTypes[type];
-    if (type === AppActionType.REHYDRATE) {
-      this.payload = payload;
-    }
+    this.payload = payload;
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { routerActions } from '@ngrx/router-store';
 import { HeaderAction, HeaderActionTypes, HeaderActionType } from './header.actions';
-import { UserActionTypes, UserActionType } from '../../auth/user/ngrx/user.actions';
+import { UserActionType, UserActionTypes } from '../../auth/user/ngrx/user.actions';
 
 @Injectable()
 export class HeaderEffects {
