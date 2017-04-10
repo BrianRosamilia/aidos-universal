@@ -1,11 +1,14 @@
+import { Injectable } from '@angular/core';
+
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { DataLoader } from './data-loader';
 
+@Injectable()
 export class BrowserDataLoader extends DataLoader {
 
-  constructor(private http: Http, private prefix: string = 'data', private suffix: string = '.json') {
+  constructor(private http: Http) {
     super();
   }
 

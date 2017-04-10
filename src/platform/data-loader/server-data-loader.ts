@@ -1,11 +1,14 @@
+import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs/Observable';
 import * as fs from 'fs';
 
 import { DataLoader } from './data-loader';
 
+@Injectable()
 export class ServerDataLoader extends DataLoader {
 
-  constructor(private prefix: string = 'data', private suffix: string = '.json') {
+  constructor() {
     super();
   }
 

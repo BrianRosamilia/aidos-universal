@@ -1,4 +1,3 @@
-
-export class TransferStoreEffects {
+export abstract class TransferStoreEffects {
 
 }

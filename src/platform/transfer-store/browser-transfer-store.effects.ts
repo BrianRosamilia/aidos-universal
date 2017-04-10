@@ -12,7 +12,7 @@ import { TransferStoreEffects } from './transfer-store.effects';
 @Injectable()
 export class BrowserTransferStoreEffects extends TransferStoreEffects {
 
-  @Effect({ dispatch: false }) track = this.actions.ofType(...types()).switchMap((action: Action) => {
+  @Effect({ dispatch: false }) log = this.actions.ofType(...types()).switchMap((action: Action) => {
     this.logAction(action);
     return Observable.of({});
   });

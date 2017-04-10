@@ -30,8 +30,7 @@ export class HomeComponent {
       if (accessToken !== undefined) {
         this.userDetails(accessToken);
         this.greet(accessToken);
-      }
-      else {
+      } else {
         delete this.user;
         delete this.greetings;
       }
@@ -40,7 +39,6 @@ export class HomeComponent {
   }
 
   userDetails(accessToken: string): void {
-    // temporary
     this.user = this.http.get(this.config.zuul.baseUrl + '/uaa/user-details', {
       headers: new Headers({
         'Authorization': ['Bearer', accessToken].join(' '),
@@ -52,7 +50,6 @@ export class HomeComponent {
   }
 
   greet(accessToken: string) {
-    // temporary
     this.greetings = this.http.get(this.config.zuul.baseUrl + '/dam/greetings', {
       headers: new Headers({
         'Authorization': ['Bearer', accessToken].join(' '),
@@ -64,7 +61,7 @@ export class HomeComponent {
   }
 
   test() {
-    this.results = this.http.get(this.config.zuul.baseUrl + '/dam/public/test').map((data: any) => {
+    this.results = this.http.get(this.config.zuul.baseUrl + '/dam/public/test', {}).map((data: any) => {
       return data;
     });
   }

@@ -1,17 +1,11 @@
+import { CommonModule, APP_BASE_HREF } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { BrowserModule } from '@angular/platform-browser';
-import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { Store } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
 import { RouterStoreModule } from '@ngrx/router-store';
-
-import { TransferState } from '../platform/transfer-state/transfer-state';
-
-import { AppState } from './ngrx/app.reducer';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -56,9 +50,5 @@ import { HeaderEffects } from './header/ngrx/header.effects';
   exports: [AppComponent]
 })
 export class AppModule {
-
-  constructor(private cache: TransferState, private store: Store<AppState>) {
-
-  }
 
 }

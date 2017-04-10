@@ -20,71 +20,68 @@ export class TransferHttp {
       return this.http.request(url, options);
     });
   }
-  /**
-   * Performs a request with `get` http method.
-   */
+
   get(url: string, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
     return this.getData(url, options, (url: string, options: RequestOptionsArgs) => {
-      console.log('GET:', url);
-      console.log('Options:', options);
+      console.info('GET:', url);
+      console.info('Options:', options);
       return this.http.get(url, options);
     });
   }
-  /**
-   * Performs a request with `post` http method.
-   */
+
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
     return this.getPostData(url, body, options, (url: string, body: any, options: RequestOptionsArgs) => {
-      console.log('GET:', url);
-      console.log('Body:', body);
-      console.log('Options:', options);
+      console.info('POST:', url);
+      console.info('Body:', body);
+      console.info('Options:', options);
       return this.http.post(url, body, options);
     });
   }
-  /**
-   * Performs a request with `put` http method.
-   */
+
   put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
     return this.getData(url, options, (url: string, options: RequestOptionsArgs) => {
+      console.info('PUT:', url);
+      console.info('Options:', options);
       return this.http.put(url, options);
     });
   }
-  /**
-   * Performs a request with `delete` http method.
-   */
+
   delete(url: string, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
     return this.getData(url, options, (url: string, options: RequestOptionsArgs) => {
+      console.info('DELETE:', url);
+      console.info('Options:', options);
       return this.http.delete(url, options);
     });
   }
-  /**
-   * Performs a request with `patch` http method.
-   */
+
   patch(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
     return this.getPostData(url, body, options, (url: string, body: any, options: RequestOptionsArgs) => {
+      console.info('PATCH:', url);
+      console.info('Body:', body);
+      console.info('Options:', options);
       return this.http.patch(url, body, options);
     });
   }
-  /**
-   * Performs a request with `head` http method.
-   */
+
   head(url: string, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
     return this.getData(url, options, (url: string, options: RequestOptionsArgs) => {
+      console.info('HEAD:', url);
+      console.info('Options:', options);
       return this.http.head(url, options);
     });
   }
-  /**
-   * Performs a request with `options` http method.
-   */
+
   options(url: string, options?: RequestOptionsArgs): Observable<any> {
     // tslint:disable-next-line:no-shadowed-variable
     return this.getData(url, options, (url: string, options: RequestOptionsArgs) => {
+      console.info('OPTIONS:', url);
+      console.info('Options:', options);
       return this.http.options(url, options);
     });
   }
@@ -134,11 +131,9 @@ export class TransferHttp {
 
   private resolveData(key: string) {
     const data = this.getFromCache(key);
-
     if (!data) {
       throw new Error();
     }
-
     return Observable.of(data);
   }
 
@@ -149,4 +144,5 @@ export class TransferHttp {
   private getFromCache(key): any {
     return this.transferState.get(key);
   }
+
 }

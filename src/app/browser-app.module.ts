@@ -8,22 +8,16 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { Actions } from '@ngrx/effects';
+import { EffectsModule } from '@ngrx/effects';
 
-import { BrowserTransferStateModule } from '../platform/transfer-state/browser-transfer-state.module';
 import { TransferState } from '../platform/transfer-state/transfer-state';
+import { BrowserTransferStateModule } from '../platform/transfer-state/browser-transfer-state.module';
 
-import { TransferStoreEffects } from '../platform/transfer-store/transfer-store.effects';
 import { BrowserTransferStoreEffects } from '../platform/transfer-store/browser-transfer-store.effects';
-import { TransferStoreModule } from '../platform/transfer-store/transfer-store.module';
+import { BrowserTransferStoreModule } from '../platform/transfer-store/browser-transfer-store.module';
 
-import { Cookies } from '../platform/cookies/cookies';
-import { BrowserCookies } from '../platform/cookies/browser-cookies';
-import { CookiesModule } from '../platform/cookies/cookies.module';
-
-import { DataLoader } from '../platform/data-loader/data-loader';
-import { BrowserDataLoader } from '../platform/data-loader/browser-data-loader';
-import { DataLoaderModule } from '../platform/data-loader/data-loader.module';
+import { BrowserCookiesModule } from '../platform/cookies/browser-cookies.module';
+import { BrowserDataLoaderModule } from '../platform/data-loader/browser-data-loader.module';
 
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
@@ -38,18 +32,6 @@ export function init(cache: TransferState) {
 
 export function getConfig() {
   return ENV_CONFIG;
-}
-
-export function createTransferStoreEffects(actions: Actions) {
-  return new BrowserTransferStoreEffects(actions);
-}
-
-export function createCookies() {
-  return new BrowserCookies();
-}
-
-export function createDataLoader(http: Http) {
-  return new BrowserDataLoader(http, 'assets/data', '.json');
 }
 
 export function HttpLoaderFactory(http: Http) {
@@ -69,23 +51,12 @@ export function HttpLoaderFactory(http: Http) {
         deps: [Http]
       }
     }),
-    TransferStoreModule.forRoot({
-      provide: TransferStoreEffects,
-      useFactory: (createTransferStoreEffects),
-      deps: [Actions]
-    }),
-    CookiesModule.forRoot({
-      provide: Cookies,
-      useFactory: (createCookies),
-      deps: []
-    }),
-    DataLoaderModule.forRoot({
-      provide: DataLoader,
-      useFactory: (createDataLoader),
-      deps: [Http]
-    }),
     NgbModule.forRoot(),
+    BrowserCookiesModule,
+    BrowserDataLoaderModule,
     BrowserTransferStateModule,
+    BrowserTransferStoreModule,
+    EffectsModule.run(BrowserTransferStoreEffects),
     BrowserAnimationsModule,
     AppModule
   ],

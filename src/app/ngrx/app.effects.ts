@@ -10,8 +10,8 @@ import { AppState } from './app.reducer';
 @Injectable()
 export class AppEffects {
 
-  @Effect() replay = this.actions.ofType(AppActionTypes[AppActionType.REPLAY]).map((action: Action) => {
-    action.payload.forEach((action: Action) => {
+  @Effect({ dispatch: false }) replay = this.actions.ofType(AppActionTypes[AppActionType.REPLAY]).map((replayAction: Action) => {
+    replayAction.payload.forEach((action: Action) => {
       this.store.dispatch(action);
     });
     return Observable.of({});
