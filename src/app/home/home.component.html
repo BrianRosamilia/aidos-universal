@@ -11,8 +11,13 @@
   </div>
 
   <div *ngIf="results | async as results" class="col-md-10 col-offset-1">
-    <span><strong>Test:</strong></span>
+    <span><strong>Test Anonymous:</strong></span>
     <div [innerHTML]="results | aidosPrettyPrint"></div>
+  </div>
+
+  <div *ngIf="dataService.getObservableData('test') | async as test" class="col-md-10 col-offset-1">
+    <span><strong>Test Data Service:</strong></span>
+    <div [innerHTML]="test | aidosPrettyPrint"></div>
   </div>
 
 </div>

@@ -16,7 +16,9 @@ module.exports = {
     "scope",
     "token_type"
   ],
-  data: [],
+  data: [
+    "test"
+  ],
   logDirectory: ".",
   prerenderStrategy: 'replay',
   shibboleth: true,

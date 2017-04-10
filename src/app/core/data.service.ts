@@ -12,13 +12,13 @@ import { GLOBAL_CONFIG, GlobalConfig } from '../../config';
 @Injectable()
 export class DataService {
 
-  public observableDataMap: Map<string, Observable<any>>;
+  private observableDataMap: Map<string, Observable<any>>;
 
   private cacheKey: string = 'DATA';
 
   private dataSubjects: Map<string, BehaviorSubject<any>>;
 
-  constructor(protected cache: TransferState, private dataLoader: DataLoader, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
+  constructor(private cache: TransferState, private dataLoader: DataLoader, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
     this.dataSubjects = new Map<string, BehaviorSubject<any>>();
     this.observableDataMap = new Map<string, Observable<any>>();
     for (let name of this.config.data) {

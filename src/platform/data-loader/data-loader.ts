@@ -4,14 +4,12 @@ export abstract class DataLoader {
 
   protected language: string;
 
-  protected prefix: string;
+  protected abstract prefix: string;
 
-  protected suffix: string;
+  protected abstract suffix: string;
 
   constructor() {
     this.language = 'en';
-    this.prefix = 'data';
-    this.suffix = '.json';
   }
 
   public setLanguage(language: string): void {

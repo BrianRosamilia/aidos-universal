@@ -10,6 +10,8 @@ import { TransferHttp } from '../../platform/transfer-http/transfer-http';
 
 import { AuthState } from '../auth/ngrx/auth.reducer';
 
+import { DataService } from '../core/data.service';
+
 import { GLOBAL_CONFIG, GlobalConfig } from '../../config';
 
 @Component({
@@ -25,7 +27,7 @@ export class HomeComponent {
 
   public results: Observable<any>;
 
-  constructor(private http: TransferHttp, private store: Store<AppState>, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
+  constructor(private http: TransferHttp, private store: Store<AppState>, public dataService: DataService, @Inject(GLOBAL_CONFIG) private config: GlobalConfig) {
     this.store.select((state: AppState) => state.auth.access_token).subscribe((accessToken: string) => {
       if (accessToken !== undefined) {
         this.userDetails(accessToken);
