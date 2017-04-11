@@ -12,35 +12,20 @@ import { FileLoader } from './file-loader';
 export const REQUEST = new InjectionToken<Request>('REQUEST');
 export const RESPONSE = new InjectionToken<Response>('RESPONSE');
 
-/**
- * These are the allowed options for the engine
- */
 export interface NgSetupOptions {
   bootstrap: Type<{}> | NgModuleFactory<{}>;
   providers?: Provider[];
 }
 
-/**
- * These are the allowed options for the render
- */
 export interface RenderOptions extends NgSetupOptions {
   req: Request;
   res?: Response;
 }
 
-/**
- * This holds a cached version of each index used.
- */
 const templateCache: { [key: string]: string } = {};
 
-/**
- * This is a map of compiled NgModuleFactories
- */
 const factoryCacheMap = new Map<Type<{}>, NgModuleFactory<{}>>();
 
-/**
- * This is an express engine for handling Angular Applications
- */
 export function ngExpressEngine(setupOptions: NgSetupOptions) {
   const compilerFactory: CompilerFactory = platformDynamicServer().injector.get(CompilerFactory);
   const compiler: Compiler = compilerFactory.createCompiler([{
@@ -91,25 +76,19 @@ export function ngExpressEngine(setupOptions: NgSetupOptions) {
   };
 }
 
-/**
- * Get a factory from a bootstrapped module/ module factory
- */
 function getFactory(moduleOrFactory: Type<{}> | NgModuleFactory<{}>, compiler: Compiler): Promise<NgModuleFactory<{}>> {
   return new Promise<NgModuleFactory<{}>>((resolve, reject) => {
-    // If module has been compiled AoT
     if (moduleOrFactory instanceof NgModuleFactory) {
       resolve(moduleOrFactory);
       return;
     } else {
       const moduleFactory = factoryCacheMap.get(moduleOrFactory);
 
-      // If module factory is cached
       if (moduleFactory) {
         resolve(moduleFactory);
         return;
       }
 
-      // Compile the module and cache it
       compiler.compileModuleAsync(moduleOrFactory)
         .then((factory: NgModuleFactory<{}>) => {
           factoryCacheMap.set(moduleOrFactory, factory);
@@ -121,9 +100,6 @@ function getFactory(moduleOrFactory: Type<{}> | NgModuleFactory<{}>, compiler: C
   });
 }
 
-/**
- * Get providers of the request and response
- */
 function getReqResProviders(req: Request, res: Response): Provider[] {
   const providers: Provider[] = [{
     provide: REQUEST,
@@ -138,9 +114,6 @@ function getReqResProviders(req: Request, res: Response): Provider[] {
   return providers;
 }
 
-/**
- * Get the document at the file path
- */
 function getDocument(filePath: string): string {
   return templateCache[filePath] = templateCache[filePath] || fs.readFileSync(filePath).toString();
 }

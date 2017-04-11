@@ -17,8 +17,8 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, @Inject(GLOBAL_CONFIG) public config: GlobalConfig) {
     this.form = this.formBuilder.group({
-      username: [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(50)])],
-      password: [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(50)])]
+      username: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
+      password: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])]
     });
   }
 

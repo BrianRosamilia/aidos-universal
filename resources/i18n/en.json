@@ -19,7 +19,7 @@
         "help": "",
         "validation": {
           "required": "Username is required!",
-          "minLength": "Username must be at least 6 characters!",
+          "minLength": "Username must be at least 5 characters!",
           "maxLength": "Username cannot be more then 50 characters!"
         }
       },
@@ -28,7 +28,7 @@
         "help": "",
         "validation": {
           "required": "Password is required!",
-          "minLength": "Password must be at least 6 characters!",
+          "minLength": "Password must be at least 5 characters!",
           "maxLength": "Password cannot be more then 50 characters!"
         }
       },
